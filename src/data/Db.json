@@ -1,0 +1,89 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "url": "hamburguesa-clasica.jpg",
+      "descripcion": "Hamburguesa clasica",
+      "precio": 100,
+      "disponibilidad": 12,
+      "favorito": true,
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+    },
+    {
+      "id": 2,
+      "url": "hamburguesa-doble.jpg",
+      "descripcion": "Hamburguesa doble",
+      "precio": 200,
+      "disponibilidad": 20,
+      "favorito": false,
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+    },
+    {
+      "id": 3,
+      "url": "hamburguesa-triple.jpg",
+      "descripcion": "Hamburguesa triple",
+      "precio": 300,
+      "disponibilidad": 15,
+      "favorito": false,
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+    },
+    {
+      "id": 4,
+      "url": "lomito.jpg",
+      "descripcion": "Lomito Completo",
+      "precio": 800,
+      "disponibilidad": 10,
+      "favorito": false,
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+    },
+    {
+      "id": 5,
+      "url": "lomito-argentino.jpg",
+      "descripcion": "Lomito Completo Argentino",
+      "precio": 1200,
+      "disponibilidad": 10,
+      "favorito": true,
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+    }
+  ],
+  "usuarios": [
+    {
+      "dni": 41748507,
+      "nombre": "Nicolas",
+      "contraseña": 12345,
+      "rol": "admin"
+    },
+    {
+      "dni": 43578043,
+      "nombre": "Nahuel",
+      "contraseña": 123456,
+      "rol": "usuario"
+    }
+  ],
+  "CompraPorUsuario": [
+    {
+      "id": 1,
+      "descripcion": "Hamburguesa clasica",
+      "precio": 100,
+      "cantidad": 1,
+      "user": 41748507,
+      "hora": "Sun May 29 2022 20:44:24 GMT-0300 (hora estándar de Argentina)"
+    },
+    {
+      "id": 2,
+      "descripcion": "Hamburguesa doble",
+      "precio": 200,
+      "cantidad": 1,
+      "user": 41748507,
+      "hora": "Sun May 29 2022 20:44:24 GMT-0300 (hora estándar de Argentina)"
+    },
+    {
+      "id": 3,
+      "descripcion": "Hamburguesa triple",
+      "precio": 300,
+      "cantidad": 1,
+      "user": 41748507,
+      "hora": "Sun May 29 2022 20:47:25 GMT-0300 (hora estándar de Argentina)"
+    }
+  ]
+}
