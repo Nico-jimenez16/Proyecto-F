@@ -22,6 +22,9 @@
                           <button v-if="getProductos.enCarrito != 0" class="bg-lime-600 rounded-full p-2 text-white" @click="DeleteCarrito(producto.id)">Restar Carrito</button>
                         </div> -->
                         <button class="bg-lime-600 p-4 rounded-xl text-white mb-2" @click="Agregar(producto)">Agregar a Carrito</button>
+                        <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
+                          <button v-if="getUser.rol == 'admin' " class="w-full bg-cyan-700 p-4 rounded-xl text-white">Modo Administrador</button>                     
+                        </router-link>
                         <p v-if="producto.disponibilidad == 0" class="p-4 rounded-xl text-[#dc2626]">Sin Stock</p>
                         <p v-if="producto.enCarrito != 0" class="bg-red-600 w-1/6 rounded-xl text-white">{{producto.enCarrito}}</p>
                       </div>
@@ -52,7 +55,7 @@ export default {
   computed: {
 
     ...mapGetters(
-      ['getProductos','getCantidadProductos','getShow']
+      ['getProductos','getCantidadProductos','getShow' ,'getUser']
     )
   },
   methods: {

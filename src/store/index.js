@@ -74,7 +74,6 @@ export default new Vuex.Store({
     
     agregarProductos(state, nuevoProd){
       let bag = state.productos.find((prod) => prod.id == nuevoProd.id);
-      console.log(nuevoProd.precio)
       if(bag){
         bag.enCarrito +=1
         state.total += nuevoProd.precio
@@ -94,16 +93,13 @@ export default new Vuex.Store({
 
     eliminarProducto(state, id){
       let prod = state.productos.find((prod) => prod.id == id)
-      console.log(prod)
       if(prod.enCarrito == 1){
         state.total -= prod.precio
         state.productos.splice(prod,1)
-        console.log('Eliminado')
       }
       else{
         prod.enCarrito--
         state.total -= prod.precio
-        console.log('resta 1 en carrito')
       }
     },
     vaciarProductos(state){

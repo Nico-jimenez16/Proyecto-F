@@ -1,5 +1,5 @@
 <template>
-  <div class="Carrito" v-show="this.getShow">
+  <div class="Carrito">
     <router-link to="/carrito">
       <div id="bag" class="flex hover:-translate-y-1 w-20 flex items-center p-2 rounded-xl transition duration-300 ease-in-out bg-white mt-2 mr-2">
         <div class="w-8 h-8 svg">

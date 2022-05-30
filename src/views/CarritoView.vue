@@ -2,7 +2,7 @@
   <div class="carrito">
       <h1 class="text-3xl mt-4 font-bold mb-4">{{ view }}</h1>
       <div class="flex text-black p-8">
-        <div class="w-1/2 bg-state-300 p-4 movies mt-2">
+        <div class="w-1/2 bg-state-300 movies mt-2">
             <div class="flex w-full flex-col justify-center items-center">
                 <h2 v-if="getCantidadProductos != 0" class="text-xl font-bold mb-4">Productos Seleccionados !</h2>
                     <div v-for="(producto, index) of getProductos" :key="index" class="flex mb-2 relative shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 w-full lg:w-3/4 xl:w-3/4 bg-transparent text-black font-bold border-2 rounded-xl p-4">
@@ -42,14 +42,14 @@
             </div>
         </div>
       </div>
-      <div class="w-full" v-show="getResultadoLogin">
+      <div class="w-full" v-show="getResultadoLogin && compras != 0">
         <h1 class="text-3xl mt-4 font-bold mt-4 mb-4">Compras Realizadas !</h1>
         <div class="flex justify-center w-full mb-4">
-          <table class="w-full table-auto text-xl">
+          <table class="w-full table-auto text-xl m-4">
               <thead class="h-full bg-black text-white p-8">
                   <tr>
-                      <th scope="col">Usuario</th>
                       <th scope="col">Id</th>
+                      <th scope="col">Usuario</th>
                       <th scope="col">Descipcion</th>
                       <th scope="col">Precio x unidad</th>
                       <th scope="col">Cantidad</th>
@@ -61,9 +61,9 @@
               <!-- Tabla de Compras por usuarios -->
 
               <tbody v-for="(compra ,i) of compras" :key="i" class="flex-inline text-xl">
-                  <tr>
-                      <td>{{ compra.user }}</td>
+                  <tr class="border">
                       <td>{{ compra.id }}</td>
+                      <td>{{ compra.user }}</td>
                       <td>{{ compra.descripcion }}</td>
                       <td>{{ compra.precio }}</td>
                       <td>{{ compra.cantidad }}</td>
@@ -126,18 +126,23 @@ export default {
     DeleteCarrito(id){
       this.eliminarProducto(id)
     },
+    
+    getRandomArbitrary() {
+      return Math.random() * (1000 - 1) + 1;
+    },
 
     async Comprar(productos){
       if(this.getResultadoLogin){
         for(let prod of productos){
+          let ultimoId = await servicios.obtenerUltimoIdCompras()
           const compra = {
 
-              "id": prod.id,
+              "id": ultimoId + 1,
               "descripcion": prod.descripcion,
               "precio": prod.precio,
               "cantidad" : prod.enCarrito,
               "user": this.getUser.dni,
-              "hora": new Date().toString()
+              "hora": new Date()
 
             }
           servicios.agregarCompraXUsuario(compra)
@@ -151,7 +156,7 @@ export default {
     },
 
     async cargarCompras(){
-      this.compra = []
+      this.compras = []
       const productos = await servicios.obtenerProductoXusuario()
       for(let prod of productos){
         if(this.getUser.dni == prod.user){

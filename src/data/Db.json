@@ -41,19 +41,21 @@
       "url": "lomito-argentino.jpg",
       "descripcion": "Lomito Completo Argentino",
       "precio": 1200,
-      "disponibilidad": 10,
+      "disponibilidad": 18,
       "favorito": true,
       "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
     }
   ],
   "usuarios": [
     {
+      "id": 1,
       "dni": 41748507,
       "nombre": "Nicolas",
       "contraseña": 12345,
       "rol": "admin"
     },
     {
+      "id": 2,
       "dni": 43578043,
       "nombre": "Nahuel",
       "contraseña": 123456,
@@ -67,7 +69,7 @@
       "precio": 100,
       "cantidad": 1,
       "user": 41748507,
-      "hora": "Sun May 29 2022 20:44:24 GMT-0300 (hora estándar de Argentina)"
+      "hora": "2022-05-30T21:10:08.715Z"
     },
     {
       "id": 2,
@@ -75,15 +77,39 @@
       "precio": 200,
       "cantidad": 1,
       "user": 41748507,
-      "hora": "Sun May 29 2022 20:44:24 GMT-0300 (hora estándar de Argentina)"
+      "hora": "2022-05-30T21:10:08.745Z"
     },
     {
       "id": 3,
+      "descripcion": "Lomito Completo",
+      "precio": 800,
+      "cantidad": 1,
+      "user": 41748507,
+      "hora": "2022-05-30T21:10:32.302Z"
+    },
+    {
+      "id": 4,
+      "descripcion": "Hamburguesa doble",
+      "precio": 200,
+      "cantidad": 2,
+      "user": 43578043,
+      "hora": "2022-05-30T21:12:56.149Z"
+    },
+    {
+      "id": 5,
       "descripcion": "Hamburguesa triple",
       "precio": 300,
       "cantidad": 1,
-      "user": 41748507,
-      "hora": "Sun May 29 2022 20:47:25 GMT-0300 (hora estándar de Argentina)"
+      "user": 43578043,
+      "hora": "2022-05-30T21:12:56.177Z"
+    },
+    {
+      "id": 6,
+      "descripcion": "Lomito Completo Argentino",
+      "precio": 1200,
+      "cantidad": 1,
+      "user": 43578043,
+      "hora": "2022-05-30T21:12:56.239Z"
     }
   ]
 }
