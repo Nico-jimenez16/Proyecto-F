@@ -75,7 +75,7 @@ export default {
             let respuesta = await this.obtenerProductos()
             for(let prod of respuesta)
                 if(prod.id == id){
-                    console.log(Apiprod + `/${ prod.id }`)
+                    // console.log(Apiprod + `/${ prod.id }`)
                     await axios.delete(Apiprod + `/${ prod.id }`)
                     alert('Producto Eliminado')
                 }
@@ -87,8 +87,21 @@ export default {
 
     // Actualiza los datos de un producto del json 
 
-    updateProducto(){
-        console.log('Servicio actualizar Producto')
+    async updateProducto(obj){
+        // console.log(Apiprod + `/${ obj.id }`, {obj})
+        try {
+            await axios.put(Apiprod + `/${ obj.id }`, {
+                "url": obj.url,
+                "descripcion": obj.descripcion,
+                "precio": obj.precio,
+                "disponibilidad": obj.disponibilidad,
+                "favorito": Boolean(obj.favorito),
+                "detalle": obj.detalle
+            })
+            console.log('Producto Actualizado')
+        } catch (error) {
+            console.error(error)
+        } 
     },
 
     // Obtiene el ultimo id del array de objetos de productos

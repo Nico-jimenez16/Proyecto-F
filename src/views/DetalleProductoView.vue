@@ -2,11 +2,11 @@
     <div>
         <h2 class="text-3xl mt-4 font-bold">{{ view }}</h2>
         <div class="flex flex-col p-8" v-for="(prod,i) of producto" :key="i">
-            <div class="flex">
-                <div class="w-1/2">
+            <div class="block lg:flex">
+                <div class="w-full lg:w-1/2">
                     <img :src="getImage(prod.url)" alt="">
                 </div>
-                <div class="w-1/2">
+                <div class="w-full mt-4 lg:m-0 lg:w-1/2">
                     <h2 class="text-2xl">Detalle del Producto</h2>
                     <h2 class="flex justify-center text-black font-bold m-2">{{ prod.descripcion }}</h2>
                     <h2 class="m-2">{{ prod.detalle }}</h2>
@@ -20,19 +20,24 @@
             <div v-if="getUser.rol == 'admin' " class="bg-lime-300 m-8">   
                 <form class="flex flex-col text-black p-8">
                     <h2 class="text-2xl font-bold mb-4">Administrador</h2>
-                    <input :value="prod.id" name="id" class="border p-2" placeholder="id" type="hidden">
-                    <label for="descripcion">Descripcion</label>
-                    <input :value="prod.descripcion" name="descripcion" class="border p-2" placeholder="descripcion" type="text">
-                    <label for="url">Url</label>
-                    <input :value="prod.url" class="border p-2" placeholder="url" name="url" type="text">
-                    <label for="precio">Precio</label>
-                    <input :value="prod.precio" name="precio" class="border p-2" placeholder="precio" type="text">
-                    <label for="disponibilidad">Disponibilidad</label>
-                    <input :value="prod.disponibilidad" name="disponibilidad" class="border p-2" placeholder="disponibilidad" type="text">
-                    <label for="favorito">Favorito</label>
-                    <input :value="prod.favorito" name="favorito" class="border p-2" placeholder="favorito" type="text">
-                    <label for="detalle">Detalle</label>
-                    <input :value="prod.detalle" name="detalle" class="border p-2" placeholder="detalle" type="text">
+                    <input name="id" class="border p-2" placeholder="id" type="hidden" v-model="form.id">
+                        <label for="descripcion">Descripcion</label>
+                    <input name="descripcion" class="border p-2" placeholder="descripcion" type="text" v-model="form.descripcion">
+                        <label for="url">Url</label>
+                    <input class="border p-2" placeholder="url" name="url" type="text" v-model="form.url">
+                        <label for="precio">Precio</label>
+                    <input name="precio" class="border p-2" placeholder="precio" type="text" v-model="form.precio">
+                        <label for="disponibilidad">Disponibilidad</label>
+                    <input name="disponibilidad" class="border p-2" placeholder="disponibilidad" type="text" v-model.number="form.disponibilidad">
+                        <label for="favorito">Favorito (true o false)</label>
+
+                    <input name="favorito" class="flex border p-2" value="true" placeholder="favorito" type="radio" v-model="form.favorito">
+                    <label class="flex mb-2" for="true">true</label>
+                    <input name="favorito" class="flex border p-2" value="false" placeholder="favorito" type="radio" v-model="form.favorito">
+                    <label class="flex" for="false">false</label>
+
+                        <label for="detalle">Detalle</label>
+                    <input name="detalle" class="border p-2" placeholder="detalle" type="text" v-model="form.detalle">
                 </form>
                 <div class="flex justify-end">
                     <button class="border text-white p-2 bg-cyan-700 mb-2 mr-2" @click="actualizarProducto()">Actualizar</button>
@@ -55,14 +60,32 @@ export default {
         return {
             view: 'Detalle de Productos',
             producto: [],
-            parametro: this.$route.params.id
+            parametro: this.$route.params.id,
+            form: {
+                id: 0,
+                url: '',
+                descripcion: '',
+                precio: '',
+                disponibilidad: '',
+                favorito: null,
+                detalle: ''
+            }
         }
     },
     components:{Carrito},
     async mounted(){
         const productos = await servicios.obtenerProductos()
         for(let p of productos)
-            if(p.id == this.parametro) this.producto.push(p)
+            if(p.id == this.parametro){
+                this.producto.push(p)
+                this.form.id = p.id
+                this.form.url = p.url
+                this.form.descripcion = p.descripcion
+                this.form.precio = p.precio
+                this.form.disponibilidad = p.disponibilidad
+                this.form.favorito = p.favorito
+                this.form.detalle = p.detalle
+            }
     },
     methods:{
         ...mapMutations(
@@ -89,7 +112,7 @@ export default {
             servicios.delleteProducto(id)
         },
         actualizarProducto(){
-            servicios.updateProducto()
+            servicios.updateProducto(this.form)
         }
     },
     computed:{

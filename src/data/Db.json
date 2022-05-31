@@ -1,22 +1,22 @@
 {
   "productos": [
     {
-      "id": 1,
       "url": "hamburguesa-clasica.jpg",
       "descripcion": "Hamburguesa clasica",
-      "precio": 100,
-      "disponibilidad": 12,
+      "precio": "150",
+      "disponibilidad": 30,
       "favorito": true,
-      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas.",
+      "id": 1
     },
     {
-      "id": 2,
       "url": "hamburguesa-doble.jpg",
       "descripcion": "Hamburguesa doble",
       "precio": 200,
       "disponibilidad": 20,
-      "favorito": false,
-      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+      "favorito": true,
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas.",
+      "id": 2
     },
     {
       "id": 3,
