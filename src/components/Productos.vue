@@ -1,7 +1,12 @@
 <template>
   <div class="Productos">
       <div class="text-black">
-          <div class="w-full bg-state-300 p-4 movies mt-2">
+          <div v-if="getUser.rol == 'admin'" class="w-full flex justify-start mt-4">
+            <router-link class="w-1/4" to="/nuevoProducto">
+              <button class="w-full bg-cyan-700 ml-4 p-4 rounded-xl text-white">Nuevo Producto</button>
+            </router-link>
+          </div>
+          <div class="w-full bg-state-300 p-4 mt-2">
               <div class="w-full flex flex-row flex-wrap justify-center">
                   <div v-for="(producto, index) of productos" :key="index" class="relative shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 w-full lg:w-1/3 xl:w-1/4 bg-transparent text-black font-bold m-4 border-2 rounded-xl p-4">
                       <img v-if="producto.favorito" src="https://img2.freepng.es/20180330/ije/kisspng-check-mark-computer-icons-clip-art-green-tick-5abe6d03cd5cd5.7558588915224291878412.jpg" class="flex absolute top-0 right-0 w-1/5 lg:w-1/4">
@@ -17,10 +22,6 @@
                           </div>
                       </div>
                       <div class="flex flex-col mt-2">
-                        <!-- <div class="mb-2">
-                          <button v-if="getProductos.enCarrito != 0" class="bg-lime-600 rounded-full p-2 text-white mr-2" @click="AddCarrito(producto.id)">Sumar Carrito</button>
-                          <button v-if="getProductos.enCarrito != 0" class="bg-lime-600 rounded-full p-2 text-white" @click="DeleteCarrito(producto.id)">Restar Carrito</button>
-                        </div> -->
                         <button class="bg-lime-600 p-4 rounded-xl text-white mb-2" @click="Agregar(producto)">Agregar a Carrito</button>
                         <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
                           <button v-if="getUser.rol == 'admin' " class="w-full bg-cyan-700 p-4 rounded-xl text-white">Modo Administrador</button>                     

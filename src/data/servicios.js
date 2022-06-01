@@ -46,11 +46,23 @@ export default {
         }
     },
 
+    // Agrega una producto al json
+
+    async agregarProducto(obj){
+        try {
+            axios.post(Apiprod, obj );
+            alert('Producto Registrado')
+        } catch (error) {
+            console.error(error)
+        }
+    },
+
     // Agrega una compra del usuario en objetos al json
 
-    agregarCompraXUsuario(obj){
+    async agregarCompraXUsuario(obj){
         try {
-            axios.post(ApiCompras, obj );
+            await axios.post(ApiCompras, obj );
+            alert('Compra Registrada')
         } catch (error) {
             console.error(error)
         }
@@ -61,7 +73,7 @@ export default {
     async agregarUsuario(obj){
         try {
             await axios.post(ApiUsu, obj )
-            alert('Usuario registrado')
+            alert('Usuario Registrado')
             
         } catch (error) {
             console.error(error)
@@ -87,7 +99,7 @@ export default {
 
     // Actualiza los datos de un producto del json 
 
-    async updateProducto(obj){
+    async updateProducto(obj , fav){
         // console.log(Apiprod + `/${ obj.id }`, {obj})
         try {
             await axios.put(Apiprod + `/${ obj.id }`, {
@@ -95,10 +107,10 @@ export default {
                 "descripcion": obj.descripcion,
                 "precio": obj.precio,
                 "disponibilidad": obj.disponibilidad,
-                "favorito": Boolean(obj.favorito),
+                "favorito": fav,
                 "detalle": obj.detalle
             })
-            console.log('Producto Actualizado')
+            alert('Producto Actualizado')
         } catch (error) {
             console.error(error)
         } 
@@ -115,12 +127,12 @@ export default {
 
     // Obtiene el ultimo id del array de objetos de Compras
 
-    async obtenerUltimoIdCompras(){
-        let respuesta = await axios.get(ApiCompras)
-        let ultimo = await respuesta.data.pop()
-        if(ultimo) return ultimo.id
-        else return 0
-    },
+    // async obtenerUltimoIdCompras(){
+    //     let respuesta = await axios.get(ApiCompras)
+    //     let ultimo = await respuesta.data.pop()
+    //     if(ultimo) return ultimo.id
+    //     else return 0
+    // },
 
     // Obtiene el ultimo id del array de objetos de Usuarios
 

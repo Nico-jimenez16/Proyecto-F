@@ -48,7 +48,6 @@
           <table class="w-full table-auto text-xl m-4">
               <thead class="h-full bg-black text-white p-8">
                   <tr>
-                      <th scope="col">Id</th>
                       <th scope="col">Usuario</th>
                       <th scope="col">Descipcion</th>
                       <th scope="col">Precio x unidad</th>
@@ -62,7 +61,6 @@
 
               <tbody v-for="(compra ,i) of compras" :key="i" class="flex-inline text-xl">
                   <tr class="border">
-                      <td>{{ compra.id }}</td>
                       <td>{{ compra.user }}</td>
                       <td>{{ compra.descripcion }}</td>
                       <td>{{ compra.precio }}</td>
@@ -134,10 +132,9 @@ export default {
     async Comprar(productos){
       if(this.getResultadoLogin){
         for(let prod of productos){
-          let ultimoId = await servicios.obtenerUltimoIdCompras()
           const compra = {
 
-              "id": ultimoId + 1,
+              "id": this.getRandomArbitrary(),
               "descripcion": prod.descripcion,
               "precio": prod.precio,
               "cantidad" : prod.enCarrito,
@@ -145,7 +142,7 @@ export default {
               "hora": new Date()
 
             }
-          servicios.agregarCompraXUsuario(compra)
+          await servicios.agregarCompraXUsuario(compra)
           await this.cargarCompras()
           this.vaciarProductos()
         }

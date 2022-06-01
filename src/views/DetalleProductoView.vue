@@ -26,10 +26,10 @@
                         <label for="url">Url</label>
                     <input class="border p-2" placeholder="url" name="url" type="text" v-model="form.url">
                         <label for="precio">Precio</label>
-                    <input name="precio" class="border p-2" placeholder="precio" type="text" v-model="form.precio">
+                    <input name="precio" class="border p-2" placeholder="precio" type="text" v-model.number="form.precio">
                         <label for="disponibilidad">Disponibilidad</label>
                     <input name="disponibilidad" class="border p-2" placeholder="disponibilidad" type="text" v-model.number="form.disponibilidad">
-                        <label for="favorito">Favorito (true o false)</label>
+                        <label for="favorito">Favorito</label>
 
                     <input name="favorito" class="flex border p-2" value="true" placeholder="favorito" type="radio" v-model="form.favorito">
                     <label class="flex mb-2" for="true">true</label>
@@ -67,7 +67,7 @@ export default {
                 descripcion: '',
                 precio: '',
                 disponibilidad: '',
-                favorito: null,
+                favorito: '',
                 detalle: ''
             }
         }
@@ -83,7 +83,7 @@ export default {
                 this.form.descripcion = p.descripcion
                 this.form.precio = p.precio
                 this.form.disponibilidad = p.disponibilidad
-                this.form.favorito = p.favorito
+                this.form.favorito = p.favorito  
                 this.form.detalle = p.detalle
             }
     },
@@ -112,7 +112,11 @@ export default {
             servicios.delleteProducto(id)
         },
         actualizarProducto(){
-            servicios.updateProducto(this.form)
+            servicios.updateProducto(this.form , this.validarBooleano())
+        },
+        validarBooleano(){
+            if(this.form.favorito == 'true') return true
+            else return false
         }
     },
     computed:{
