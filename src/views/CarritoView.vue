@@ -133,8 +133,6 @@ export default {
       if(this.getResultadoLogin){
         for(let prod of productos){
           const compra = {
-
-              "id": this.getRandomArbitrary(),
               "descripcion": prod.descripcion,
               "precio": prod.precio,
               "cantidad" : prod.enCarrito,

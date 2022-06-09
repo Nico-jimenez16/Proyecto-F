@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const Apiprod = "http://localhost:4545/productos";
-const ApiUsu = "http://localhost:4545/usuarios";
-const ApiCompras = "http://localhost:4545/CompraPorUsuario";
+const Apiprod = "https://62a123797b9345bcbe46e31d.mockapi.io/productos";
+const ApiUsu = "https://62a123797b9345bcbe46e31d.mockapi.io/usuarios";
+const ApiCompras = "https://62a123797b9345bcbe46e31d.mockapi.io/compras";
 
 
 export default {
@@ -48,10 +48,25 @@ export default {
 
     // Agrega una producto al json
 
-    async agregarProducto(obj){
+    async agregarProducto(obj , fav){
         try {
-            axios.post(Apiprod, obj );
-            alert('Producto Registrado')
+            if((obj.url && obj.descripcion && obj.precio && obj.disponibilidad && obj.favorito && obj.detalle && fav) != ''){
+                const nuevoP = {
+                    "url" : obj.url,
+                    "descripcion": obj.descripcion,
+                    "precio": obj.precio,
+                    "disponibilidad" : obj.disponibilidad,
+                    "favorito": fav,
+                    "detalle" : obj.detalle
+                }
+                await axios.post(Apiprod, nuevoP )
+                alert('Producto Registrado')
+                return true
+            }else{
+                alert('Debe completar todos los campos!')
+                return false
+            }
+            
         } catch (error) {
             console.error(error)
         }
@@ -87,7 +102,6 @@ export default {
             let respuesta = await this.obtenerProductos()
             for(let prod of respuesta)
                 if(prod.id == id){
-                    // console.log(Apiprod + `/${ prod.id }`)
                     await axios.delete(Apiprod + `/${ prod.id }`)
                     alert('Producto Eliminado')
                 }
@@ -100,17 +114,21 @@ export default {
     // Actualiza los datos de un producto del json 
 
     async updateProducto(obj , fav){
-        // console.log(Apiprod + `/${ obj.id }`, {obj})
+        console.log(obj, fav)
         try {
-            await axios.put(Apiprod + `/${ obj.id }`, {
-                "url": obj.url,
-                "descripcion": obj.descripcion,
-                "precio": obj.precio,
-                "disponibilidad": obj.disponibilidad,
-                "favorito": fav,
-                "detalle": obj.detalle
-            })
-            alert('Producto Actualizado')
+            if((obj.id && obj.url && obj.descripcion && obj.precio && obj.disponibilidad && obj.favorito && obj.detalle && fav) != ''){
+                await axios.put(Apiprod + `/${ obj.id }`, {
+                    "url": obj.url,
+                    "descripcion": obj.descripcion,
+                    "precio": obj.precio,
+                    "disponibilidad": obj.disponibilidad,
+                    "favorito": fav,
+                    "detalle": obj.detalle
+                })
+                alert('Producto Actualizado')
+            }else{
+                alert('Debe completar todos los campos')
+            }
         } catch (error) {
             console.error(error)
         } 
@@ -124,15 +142,6 @@ export default {
         if(ultimo) return ultimo.id
         else return 0
     },
-
-    // Obtiene el ultimo id del array de objetos de Compras
-
-    // async obtenerUltimoIdCompras(){
-    //     let respuesta = await axios.get(ApiCompras)
-    //     let ultimo = await respuesta.data.pop()
-    //     if(ultimo) return ultimo.id
-    //     else return 0
-    // },
 
     // Obtiene el ultimo id del array de objetos de Usuarios
 

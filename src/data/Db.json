@@ -5,8 +5,8 @@
       "descripcion": "Hamburguesa clasica",
       "precio": 200,
       "disponibilidad": 30,
-      "favorito": true,
-      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas.",
+      "favorito": false,
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada. Viene con papas fritas.",
       "id": 1
     },
     {
@@ -15,7 +15,7 @@
       "precio": 250,
       "disponibilidad": 15,
       "favorito": false,
-      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas.",
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada. Viene con papas fritas.",
       "id": 2
     },
     {
@@ -23,18 +23,18 @@
       "descripcion": "Hamburguesa triple",
       "precio": 300,
       "disponibilidad": 15,
-      "favorito": true,
-      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas.",
+      "favorito": false,
+      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula.",
       "id": 3
     },
     {
-      "id": 4,
       "url": "lomito.jpg",
       "descripcion": "Lomito Completo",
-      "precio": 800,
-      "disponibilidad": 10,
+      "precio": 1000,
+      "disponibilidad": 8,
       "favorito": false,
-      "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+      "detalle": "Medallón de zanahoria. Viene con papas fritas.",
+      "id": 4
     },
     {
       "id": 5,
@@ -44,6 +44,15 @@
       "disponibilidad": 18,
       "favorito": true,
       "detalle": "Medallón de zanahoria, arroz yamaní y garbanzos con rúcula, cebolla caramelizada, queso provolone a la plancha y tomates deshidratados. Viene con papas fritas."
+    },
+    {
+      "id": 6,
+      "url": "pizza-argentina.jpg",
+      "descripcion": "Pizza Argentina",
+      "precio": 1000,
+      "disponibilidad": 8,
+      "favorito": true,
+      "detalle": "Viene con papas fritas."
     }
   ],
   "usuarios": [
@@ -94,6 +103,22 @@
       "cantidad": 1,
       "user": 43578043,
       "hora": "2022-06-01T17:09:05.778Z"
+    },
+    {
+      "id": 559.729548659227,
+      "descripcion": "Hamburguesa clasica",
+      "precio": 200,
+      "cantidad": 2,
+      "user": 41748507,
+      "hora": "2022-06-06T19:50:40.091Z"
+    },
+    {
+      "id": 57.32141854686828,
+      "descripcion": "Hamburguesa doble",
+      "precio": 250,
+      "cantidad": 2,
+      "user": 41748507,
+      "hora": "2022-06-06T19:50:41.663Z"
     }
   ]
 }

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header></Header>
-    <div class="flex w-full justify-left items-center border-b-2">
+    <div class="flex w-full justify-left items-center px-4 border-b-2">
         <router-link class="mt-2" to="/" >
           <h2 class="text-cyan-700 font-bold px-4 mb-2">Inicio</h2>
         </router-link> |

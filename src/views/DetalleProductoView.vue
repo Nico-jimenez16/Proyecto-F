@@ -17,14 +17,14 @@
                     <button class="w-2/3 bg-lime-600 p-4 rounded-xl text-white mt-4" @click="Agregar(prod)">Agregar a Carrito</button>
                 </div>
             </div>
-            <div v-if="getUser.rol == 'admin' " class="bg-lime-300 m-8">   
+            <div name="actualizacion de producto" v-if="getUser.rol == 'admin' " class="bg-lime-300 m-8">   
                 <form class="flex flex-col text-black p-8">
                     <h2 class="text-2xl font-bold mb-4">Administrador</h2>
-                    <input name="id" class="border p-2" placeholder="id" type="hidden" v-model="form.id">
+                    <input name="id" class="border p-2" placeholder="id" type="hidden" v-model.number="form.id">
                         <label for="descripcion">Descripcion</label>
-                    <input name="descripcion" class="border p-2" placeholder="descripcion" type="text" v-model="form.descripcion">
+                    <input name="descripcion" class="border p-2" placeholder="descripcion" type="text" v-model.trim="form.descripcion">
                         <label for="url">Url</label>
-                    <input class="border p-2" placeholder="url" name="url" type="text" v-model="form.url">
+                    <input class="border p-2" placeholder="url" name="url" type="text" v-model.trim="form.url">
                         <label for="precio">Precio</label>
                     <input name="precio" class="border p-2" placeholder="precio" type="text" v-model.number="form.precio">
                         <label for="disponibilidad">Disponibilidad</label>
@@ -37,7 +37,7 @@
                     <label class="flex" for="false">false</label>
 
                         <label for="detalle">Detalle</label>
-                    <input name="detalle" class="border p-2" placeholder="detalle" type="text" v-model="form.detalle">
+                    <input name="detalle" class="border p-2" placeholder="detalle" type="text" v-model.trim="form.detalle">
                 </form>
                 <div class="flex justify-end">
                     <button class="border text-white p-2 bg-cyan-700 mb-2 mr-2" @click="actualizarProducto()">Actualizar</button>
@@ -59,10 +59,11 @@ export default {
     data() {
         return {
             view: 'Detalle de Productos',
+            ruta: '',
             producto: [],
             parametro: this.$route.params.id,
             form: {
-                id: 0,
+                id: this.parametro,
                 url: '',
                 descripcion: '',
                 precio: '',
@@ -72,7 +73,6 @@ export default {
             }
         }
     },
-    components:{Carrito},
     async mounted(){
         const productos = await servicios.obtenerProductos()
         for(let p of productos)
@@ -86,6 +86,14 @@ export default {
                 this.form.favorito = p.favorito  
                 this.form.detalle = p.detalle
             }
+    },
+    components:{
+        Carrito
+    },
+    computed:{
+        ...mapGetters(
+            ['getUser']
+        ),
     },
     methods:{
         ...mapMutations(
@@ -108,25 +116,24 @@ export default {
             }
         this.agregarProductos(prod)
         },
-        eliminarProducto(id){
-            servicios.delleteProducto(id)
+        async eliminarProducto(id){
+            await servicios.delleteProducto(id)
         },
-        actualizarProducto(){
-            servicios.updateProducto(this.form , this.validarBooleano())
+        async actualizarProducto(){
+            await servicios.updateProducto(this.form , this.validarBooleano())
         },
         validarBooleano(){
             if(this.form.favorito == 'true') return true
             else return false
         }
-    },
-    computed:{
-        ...mapGetters(
-            ['getUser']
-        ),
     }
 }
 </script>
 
 <style>
-
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
 </style>
