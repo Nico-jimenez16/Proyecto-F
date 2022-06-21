@@ -1,26 +1,29 @@
 <template>
   <div id="app">
     <Header></Header>
-    <div class="flex w-full justify-left items-center px-4 border-b-2">
-        <router-link class="mt-2" to="/" >
+    <nav class="flex w-full justify-left items-center px-4 border-b-2">
+        <router-link class="mt-2" :to="{ name: 'home'}" >
           <h2 class="text-cyan-700 font-bold px-4 mb-2">Inicio</h2>
         </router-link> |
-        <router-link class="mt-2" to="/productos" >
+        <router-link class="mt-2" :to="{name: 'productos'}" >
           <h2 class="text-cyan-700 font-bold px-4 mb-2">Productos</h2>
         </router-link>
-    </div>
+    </nav>
     <router-view/>
+    <Footer></Footer>
   </div>
 </template>
 
 
 <script>
 import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
+    Footer
   }
 }
 </script>
@@ -32,15 +35,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  z-index: -1;
 }
 
 nav a.router-link-exact-active {

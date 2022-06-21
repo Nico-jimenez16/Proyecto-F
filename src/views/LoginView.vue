@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="Login">
         <h1 class="text-3xl mt-4 font-bold">{{ view }}</h1>
         <Login :usuarios="usuarios" ></Login>
     </div>

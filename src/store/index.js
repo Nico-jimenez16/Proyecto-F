@@ -93,15 +93,14 @@ export default new Vuex.Store({
 
     eliminarProducto(state, id){
       let prod = state.productos.find((prod) => prod.id == id)
+      let Indexprod = state.productos.findIndex((prod) => prod.id == id)
       if(prod.enCarrito == 1){
         state.total -= prod.precio
-        state.productos.splice(prod,1)
-        console.log('Carrito = 1' , id)
+        state.productos.splice(Indexprod , 1)
       }
       else{
-        prod.enCarrito--
         state.total -= prod.precio
-        console.log('Carrito con mas de 1',id)
+        prod.enCarrito--
       }
     },
     vaciarProductos(state){

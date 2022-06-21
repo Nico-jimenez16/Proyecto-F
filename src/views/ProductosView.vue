@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="Producto">
         <h1 class="text-3xl mt-4 font-bold">{{ view }}</h1>
         <Productos :productos="producto"></Productos>
         <Carrito></Carrito>
@@ -20,7 +20,7 @@ export default {
             producto: []
         }
     },
-    async mounted(){
+    async created(){
         this.producto = await servicios.obtenerProductos()
     }
 }

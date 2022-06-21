@@ -1,4 +1,6 @@
-# segunda-entrega-pf
+# entrega-final Produccion
+
+https://nicolasapp-164d3.web.app/#/
 
 ## Project setup
 ```
@@ -10,10 +12,6 @@ npm install
 npm run serve
 ```
 
-### Compiles json
-```
-npm run api
-```
 ### Compiles and minifies for production
 ```
 npm run build

@@ -1,34 +1,34 @@
 <template>
   <div class="Header">
-    <div class="bg-lime-300 text-white w-full p-4 h-32 mb-2">
+    <div class="text-white w-full p-4 h-36 mb-2">
         <div class="flex w-full h-full text-black border-b">
-            <div class="flex w-1/2 flex-col hidden md:flex items-start justify-center">
+            <div class="flex w-1/2 flex-col font-bold hidden md:flex items-start justify-center">
                 <h2 class="text-2xl">{{ titulo }}</h2>
-                <a class="text-xl"><strong></strong>{{ entrega }}</a>
+                <a class="text-xl">{{ entrega }}</a>
             </div>
-            <div class="flex w-full md:hidden items-center justify-center pr-4">
-                <h2 class="text-2xl">{{ titulo }}</h2>
+            <div class="flex w-1/2 md:hidden items-end justify-center mb-2 pr-4">
+                <h2 class="text-xl sm:text-lg">{{ titulo }}</h2>
             </div>
             <div v-if="!getResultadoLogin" class="block md:flex w-1/2 justify-center items-center">
-              <router-link to="/login">
+              <router-link :to="{name: 'login'}">
                 <div class="flex justify-center items-center w-full h-10 mr-2 border-2 rounded-full px-2 bg-white">
-                  <!-- <img class="w-10 h-auto block mr-2" src="https://cdn-icons-png.flaticon.com/512/1828/1828453.png" alt=""> -->
                   <p class="w-full">Iniciar Sesion</p>
                 </div>
               </router-link>
-              <router-link to="/registro">
+              <router-link :to="{name: 'registro'}">
                 <div class="flex justify-center items-center w-full h-10 mt-2 md:mt-0 md:ml-2 border-2 rounded-full px-2 bg-white">
-                  <!-- <img class="w-10 h-auto block mr-2" src="https://cdn-icons.flaticon.com/png/512/5655/premium/5655237.png?token=exp=1653437643~hmac=552e5aaf587dbb9da93680dfc4f80d47" alt=""> -->
                   <p class="w-full">Registrarse</p>
                 </div>
               </router-link>
             </div>
             <div v-if="getResultadoLogin" class="flex w-1/2 justify-center items-center">
-                <h3 class="bg-cyan-700 text-white text-xl p-2">Bienvenido: {{ getUser.nombre }}</h3>
-                <button class="ml-4 font-bold" @click="this.Salir">Salir</button>
+              <div class="flex flex-col items-center bg-cyan-700 text-white rounded-xl p-2">
+                <img src="../assets/images/user.png" alt="user">
+                <h3 class="text-xl">{{ getUser.nombre }}</h3>
+              </div>
+              <button class="ml-4 bg-cyan-700 p-4 rounded-xl text-white font-bold" @click="this.Salir">Cerrar Sesion</button>
             </div>
         </div>
-
     </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
   data() {
       return {
         titulo: 'Angel Nicolas Jimenez',
-        entrega: 'Segunda entrega - Proyecto final con VueJs CLI'
+        entrega: 'VueJs - Proyecto final'
       }
   },
   computed: {
@@ -61,3 +61,9 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.Header{
+  background-image: url('https://ingenieriademenu.com/wp-content/uploads/2021/01/Pollo-biryani-comida-hindu.jpg');
+}
+</style>

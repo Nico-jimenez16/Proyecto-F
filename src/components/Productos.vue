@@ -2,8 +2,8 @@
   <div class="Productos">
       <div class="text-black">
           <div v-if="getUser.rol == 'admin'" class="w-full flex justify-start mt-4">
-            <router-link class="w-1/4" to="/nuevoProducto">
-              <button class="w-full bg-cyan-700 ml-4 p-4 rounded-xl text-white">Nuevo Producto</button>
+            <router-link class="w-full" :to="{name: 'nuevoProducto'}">
+              <button class="w-2/3 md:w-1/3 bg-cyan-700 ml-4 p-4 rounded-xl text-white">Nuevo Producto</button>
             </router-link>
           </div>
           <div class="w-full bg-state-300 p-4 mt-2">
@@ -17,18 +17,13 @@
                       </router-link>
                       <div class="flex flex-col w-full">
                           <div class="mt-2">
-                              <p class="w-full font-bold">{{ producto.descripcion }}</p>
-                              <p class="w-full font-bold">Precio $ {{ producto.precio }}</p>
+                              <h1 class="w-full font-bold">{{ producto.descripcion }}</h1>
+                              <h2 class="w-full">Precio $ {{ producto.precio }}</h2>
+                              <label class="flex justify-start">Detalle</label>
+                              <p class="whitespace-nowrap	text-ellipsis	overflow-hidden text-sm border-t-2 h-12 pt-2 items-center">{{ producto.detalle }}</p>
                           </div>
                       </div>
                       <div class="flex flex-col mt-2">
-                        <!-- <div class="mb-2">
-                          <div v-for="(p,i) of getProductos" :key="i" class="w-full">
-                            <button v-if="p.id == producto.id" class="rounded-full bg-lime-400 mr-2 ml-2 p-2" @click="DeleteCarrito(p.id)">-</button>
-                            <input v-if="p.id == producto.id" :value="p.enCarrito" class="w-1/5 pl-2" type="number" disabled name="enCarrito" id="enCarrito">
-                            <button v-if="p.id == producto.id" class="rounded-full bg-lime-400 ml-2 mr-2 p-2" @click="Agregar(p)">+</button>
-                          </div>
-                        </div> -->
                         <button class="bg-lime-600 p-4 rounded-xl text-white mb-2" @click="Agregar(producto)">Agregar a Carrito</button>
                         <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
                           <button v-if="getUser.rol == 'admin' " class="w-full bg-cyan-700 p-4 rounded-xl text-white">Modo Administrador</button>                     

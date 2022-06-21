@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="DetalleProducto">
         <h2 class="text-3xl mt-4 font-bold">{{ view }}</h2>
         <div class="flex flex-col p-8" v-for="(prod,i) of producto" :key="i">
             <div class="block lg:flex">
@@ -17,7 +17,7 @@
                     <button class="w-2/3 bg-lime-600 p-4 rounded-xl text-white mt-4" @click="Agregar(prod)">Agregar a Carrito</button>
                 </div>
             </div>
-            <div name="actualizacion de producto" v-if="getUser.rol == 'admin' " class="bg-lime-300 m-8">   
+            <div name="actualizacion de producto" v-if="getUser.rol == 'admin' " class="bg-lime-300 m-2 mt-4 md:m-8">   
                 <form class="flex flex-col text-black p-8">
                     <h2 class="text-2xl font-bold mb-4">Administrador</h2>
                     <input name="id" class="border p-2" placeholder="id" type="hidden" v-model.number="form.id">
@@ -31,10 +31,10 @@
                     <input name="disponibilidad" class="border p-2" placeholder="disponibilidad" type="text" v-model.number="form.disponibilidad">
                         <label for="favorito">Favorito</label>
 
-                    <input name="favorito" class="flex border p-2" value="true" placeholder="favorito" type="radio" v-model="form.favorito">
-                    <label class="flex mb-2" for="true">true</label>
-                    <input name="favorito" class="flex border p-2" value="false" placeholder="favorito" type="radio" v-model="form.favorito">
-                    <label class="flex" for="false">false</label>
+                    <input name="favorito" class="flex border p-2" value="true" placeholder="favorito" @change="validarBooleano" type="radio" v-model="form.favorito">
+                        <label class="flex mb-2" for="true">true</label>
+                    <input name="favorito" class="flex border p-2" value="false" placeholder="favorito" @change="validarBooleano" type="radio" v-model="form.favorito">
+                        <label class="flex" for="false">false</label>
 
                         <label for="detalle">Detalle</label>
                     <input name="detalle" class="border p-2" placeholder="detalle" type="text" v-model.trim="form.detalle">
@@ -45,6 +45,7 @@
                 </div>
             </div>
         </div>
+        <!-- <div class="hidden modal w-56 h-56 bg-black top-0 left-0 right-0 bottom-0 m-auto absolute">Soy un modal</div> -->
         <Carrito></Carrito>
     </div>
 </template>
@@ -104,27 +105,33 @@ export default {
             return require(`@/assets/images/${img}`)
         },
         Agregar(producto){
-        const prod = {
+            const prod = {
 
-                "id": producto.id,
-                "url" : producto.url,
-                "descripcion": producto.descripcion,
-                "precio": producto.precio,
-                "disponibilidad" : producto.disponibilidad,
-                "favorito": producto.favorito,
-                "enCarrito": 1
+                    "id": producto.id,
+                    "url" : producto.url,
+                    "descripcion": producto.descripcion,
+                    "precio": producto.precio,
+                    "disponibilidad" : producto.disponibilidad,
+                    "favorito": producto.favorito,
+                    "enCarrito": 1
             }
-        this.agregarProductos(prod)
+            this.agregarProductos(prod)
         },
         async eliminarProducto(id){
-            await servicios.delleteProducto(id)
+            let response = await servicios.delleteProducto(id)
+            if(response)
+                alert('Producto Eliminado')
+                this.$router.replace( {name: 'productos'} )
         },
         async actualizarProducto(){
-            await servicios.updateProducto(this.form , this.validarBooleano())
+            const fav = this.validarBooleano()
+            await servicios.updateProducto(this.form , fav)
+                this.$router.replace( {name: 'productos'} )
         },
         validarBooleano(){
-            if(this.form.favorito == 'true') return true
-            else return false
+            if(this.form.favorito == 'true') 
+                return true 
+            return false
         }
     }
 }

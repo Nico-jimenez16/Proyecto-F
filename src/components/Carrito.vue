@@ -1,6 +1,6 @@
 <template>
   <div class="Carrito">
-    <router-link to="/carrito">
+    <router-link :to="{name: 'carrito'}">
       <div id="bag" class="flex hover:-translate-y-1 w-20 flex items-center p-2 rounded-xl transition duration-300 ease-in-out bg-white mt-2 mr-2">
         <div class="w-8 h-8 svg">
             <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" version="1.0"  width="1280.000000pt" height="1211.000000pt" viewBox="0 0 1280.000000 1211.000000" preserveAspectRatio="xMidYMid meet">
