@@ -9,7 +9,7 @@ export default new Vuex.Store({
     productos: [],
     resultadoLogin: false,
     User: {
-      nombre: '',
+      usuario: '',
       dni: 0,
       rol: ''
     },
@@ -55,7 +55,7 @@ export default new Vuex.Store({
     // Usuario
     
     agregarUser(state , obj){
-      state.User.nombre = obj.nombre
+      state.User.usuario = obj.usuario
       state.User.dni = obj.dni
       state.User.rol = obj.rol
 
@@ -64,7 +64,7 @@ export default new Vuex.Store({
       state.resultadoLogin = resultado
     },
     Salir(state){
-      state.User.nombre = '',
+      state.User.usuario = '',
       state.User.dni = 0,
       state.User.rol = ''
       state.resultadoLogin = false

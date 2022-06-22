@@ -14,30 +14,40 @@
                         <div class="text-red-600 w-1/2 text-2xl">Precio:</div>
                         <div class="w-1/2 text-2xl">$ {{prod.precio}}</div>
                     </div>
-                    <button class="w-2/3 bg-lime-600 p-4 rounded-xl text-white mt-4" @click="Agregar(prod)">Agregar a Carrito</button>
+                    <button class="w-2/3 bg-lime-600 p-4 rounded-xl text-white mt-4" @click="AgregarCarrito(prod)">Agregar a Carrito</button>
                 </div>
             </div>
             <div name="actualizacion de producto" v-if="getUser.rol == 'admin' " class="bg-lime-300 m-2 mt-4 md:m-8">   
                 <form class="flex flex-col text-black p-8">
                     <h2 class="text-2xl font-bold mb-4">Administrador</h2>
                     <input name="id" class="border p-2" placeholder="id" type="hidden" v-model.number="form.id">
+                        
                         <label for="descripcion">Descripcion</label>
                     <input name="descripcion" class="border p-2" placeholder="descripcion" type="text" v-model.trim="form.descripcion">
+                        <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.descripcion.$error">{{ v$.form.descripcion.$errors[0].$message }}</span>
+
                         <label for="url">Url</label>
                     <input class="border p-2" placeholder="url" name="url" type="text" v-model.trim="form.url">
+                        <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.url.$error">{{ v$.form.url.$errors[0].$message }}</span>
+
                         <label for="precio">Precio</label>
                     <input name="precio" class="border p-2" placeholder="precio" type="text" v-model.number="form.precio">
+                        <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.precio.$error">{{ v$.form.precio.$errors[0].$message }}</span>
+                        
                         <label for="disponibilidad">Disponibilidad</label>
                     <input name="disponibilidad" class="border p-2" placeholder="disponibilidad" type="text" v-model.number="form.disponibilidad">
+                        <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.disponibilidad.$error">{{ v$.form.disponibilidad.$errors[0].$message }}</span>
+                        
                         <label for="favorito">Favorito</label>
-
                     <input name="favorito" class="flex border p-2" value="true" placeholder="favorito" @change="validarBooleano" type="radio" v-model="form.favorito">
                         <label class="flex mb-2" for="true">true</label>
                     <input name="favorito" class="flex border p-2" value="false" placeholder="favorito" @change="validarBooleano" type="radio" v-model="form.favorito">
                         <label class="flex" for="false">false</label>
+                        <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.favorito.$error">{{ v$.form.favorito.$errors[0].$message }}</span>
 
                         <label for="detalle">Detalle</label>
                     <input name="detalle" class="border p-2" placeholder="detalle" type="text" v-model.trim="form.detalle">
+                        <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.detalle.$error">{{ v$.form.detalle.$errors[0].$message }}</span>
                 </form>
                 <div class="flex justify-end">
                     <button class="border text-white p-2 bg-cyan-700 mb-2 mr-2" @click="actualizarProducto()">Actualizar</button>
@@ -45,7 +55,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="hidden modal w-56 h-56 bg-black top-0 left-0 right-0 bottom-0 m-auto absolute">Soy un modal</div> -->
         <Carrito></Carrito>
     </div>
 </template>
@@ -54,13 +63,14 @@
 import servicios from '@/data/servicios'
 import Carrito from '@/components/Carrito.vue'
 import { mapGetters , mapMutations } from 'vuex'
+import useVuelidate from '@vuelidate/core';
+import { required } from '@vuelidate/validators';
 
 export default {
     name: 'DetalleProductoView',
     data() {
         return {
             view: 'Detalle de Productos',
-            ruta: '',
             producto: [],
             parametro: this.$route.params.id,
             form: {
@@ -73,6 +83,9 @@ export default {
                 detalle: ''
             }
         }
+    },
+    setup(){
+        return {  v$ : useVuelidate() }
     },
     async mounted(){
         const productos = await servicios.obtenerProductos()
@@ -104,7 +117,7 @@ export default {
         getImage(img){
             return require(`@/assets/images/${img}`)
         },
-        Agregar(producto){
+        AgregarCarrito(producto){
             const prod = {
 
                     "id": producto.id,
@@ -124,14 +137,32 @@ export default {
                 this.$router.replace( {name: 'productos'} )
         },
         async actualizarProducto(){
+            this.v$.$validate()
             const fav = this.validarBooleano()
-            await servicios.updateProducto(this.form , fav)
-                this.$router.replace( {name: 'productos'} )
+            if(!this.v$.$error){
+                await servicios.updateProducto(this.form , fav)
+                    this.$router.replace( {name: 'productos'} )
+            }else{
+                this.$router.replace( {name: 'detalle'} )
+            }
+                
         },
         validarBooleano(){
             if(this.form.favorito == 'true') 
                 return true 
             return false
+        }
+    },
+    validations () {
+        return {
+            form: {
+                url: {required},
+                descripcion: {required},
+                precio: {required},
+                disponibilidad: {required},
+                favorito: {required},
+                detalle: {required}
+            }
         }
     }
 }

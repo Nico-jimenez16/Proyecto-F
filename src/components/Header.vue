@@ -6,7 +6,7 @@
                 <h2 class="text-2xl">{{ titulo }}</h2>
                 <a class="text-xl">{{ entrega }}</a>
             </div>
-            <div class="flex w-1/2 md:hidden items-end justify-center mb-2 pr-4">
+            <div class="flex w-1/2 md:hidden items-center justify-center mb-2 pr-4">
                 <h2 class="text-xl sm:text-lg">{{ titulo }}</h2>
             </div>
             <div v-if="!getResultadoLogin" class="block md:flex w-1/2 justify-center items-center">
@@ -21,12 +21,12 @@
                 </div>
               </router-link>
             </div>
-            <div v-if="getResultadoLogin" class="flex w-1/2 justify-center items-center">
-              <div class="flex flex-col items-center bg-cyan-700 text-white rounded-xl p-2">
+            <div v-if="getResultadoLogin" class="block md:flex w-1/2 justify-center items-center">
+              <div class="flex justify-center items-center text-black rounded-xl mb-1 md:mb-0 p-0 md:py-2 md:px-4 user">
                 <img src="../assets/images/user.png" alt="user">
-                <h3 class="text-xl">{{ getUser.nombre }}</h3>
+                <h3 class="text-md md:text-xl">{{ getUser.usuario }}</h3>
               </div>
-              <button class="ml-4 bg-cyan-700 p-4 rounded-xl text-white font-bold" @click="this.Salir">Cerrar Sesion</button>
+              <div class="flex justify-center p-3 md:p-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="this.Salir">Cerrar Sesion</div>
             </div>
         </div>
     </div>
@@ -65,5 +65,9 @@ export default {
 <style scoped>
 .Header{
   background-image: url('https://ingenieriademenu.com/wp-content/uploads/2021/01/Pollo-biryani-comida-hindu.jpg');
+}
+.user , .salir{
+  border: 2px solid rgb(101 163 13);
+  background-color: aliceblue;
 }
 </style>

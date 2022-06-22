@@ -35,11 +35,9 @@ export default {
             "detalle" : obj.detalle
         }
         try {
-            if(nuevoP){
-                const response = await axios.post(Apiprod, nuevoP)
-                const data = response.data
-                return data
-            }
+            const response = await axios.post(Apiprod, nuevoP)
+            const data = response.data
+            return data
         } catch (error) {
             console.error(error)
         }
@@ -73,12 +71,8 @@ export default {
             "detalle": obj.detalle
         }
         try {
-            if(prod){
-                await axios.put(Apiprod + `/${ obj.id }`, prod)
-                alert('Producto Actualizado')
-            }else{
-                alert('No se pudo Actualizar')
-            }
+            await axios.put(Apiprod + `/${ obj.id }`, prod)
+            alert('Producto Actualizado')
         } catch (error) {
             console.error(error)
         }

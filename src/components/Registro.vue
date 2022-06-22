@@ -8,8 +8,8 @@
                         <label for="dni">Dni</label>
                     </div>
                     <input class="w-full p-2 pl-2" type="number" name="dni" id="dni" placeholder="Ingrese dni" @keyup="validarDni" v-model.number="formulario.dni.value">
-                    <div class="bg-red-700 mt-2 w-1/3" v-if="!formulario.dni.isValido">
-                        <p class="text-white text-sm md:text-md font-bold">{{ formulario.dni.mje }}</p>
+                    <div class="w-full bg-red-700" v-if="!formulario.dni.isValido">
+                        <p class="w-full bg-red-500 text-white text-sm md:text-md font-bold">{{ formulario.dni.mje }}</p>
                     </div>
                 </div>
                 <div class="flex flex-col h-24">
@@ -17,17 +17,17 @@
                         <label for="usuario">Usuario</label>
                     </div>
                     <input class="w-full p-2 pl-2" type="usuario" name="usuario" id="usuario" placeholder="Ingrese usuario" @keyup="validarUsuario" v-model.trim="formulario.usuario.value">
-                    <div class="bg-red-700 mt-2 w-1/3" v-if="!formulario.usuario.isValido">
-                        <p class="text-white text-sm md:text-md font-bold">{{ formulario.usuario.mje }}</p>
+                    <div class="w-full bg-red-700" v-if="!formulario.usuario.isValido">
+                        <p class="bg-red-500 text-white text-sm md:text-md font-bold">{{ formulario.usuario.mje }}</p>
                     </div>
                 </div>
                 <div class="flex flex-col h-24">
                     <div class="w-full">
                         <label for="contraseña">Contraseña</label>
                     </div>
-                    <input class="w-full p-2 pl-2" type="password" name="contraseña" id="contraseña" placeholder="Ingrese Contraseña" @keyup="validarPassword" v-model.number="formulario.password.value">
-                    <div class="bg-red-700 mt-2 w-1/3" v-if="!formulario.password.isValido">
-                        <p class="text-white text-sm md:text-md font-bold">{{ formulario.password.mje }}</p>
+                    <input class="w-full p-2 pl-2" type="password" name="contraseña" id="contraseña" placeholder="Ingrese Contraseña" @keyup="validarPassword" v-model.trim="formulario.password.value">
+                    <div class="w-full bg-red-700" v-if="!formulario.password.isValido">
+                        <p class="bg-red-500 text-white text-sm md:text-md font-bold">{{ formulario.password.mje }}</p>
                     </div>
                 </div>
                 <div class="flex flex-col h-24">
@@ -35,15 +35,14 @@
                         <label for="rol">Rol</label>
                     </div>
                     <select @change="validarRol" class="w-full p-2" v-model="formulario.rol.value">
-                        <option disabled value="cursos">Seleccione un rol</option>
+                        <option disabled value="roles">Seleccione un rol</option>
                         <option >admin</option>
                         <option >usuario</option>
                     </select>
-                    <div class="bg-red-700 mt-2 w-1/3" v-if="!formulario.rol.isValido">
-                        <p class="text-white text-sm md:text-md font-bold">{{ formulario.rol.mje }}</p>
+                    <div class="w-full bg-red-700" v-if="!formulario.rol.isValido">
+                        <p class="bg-red-500 text-white text-sm md:text-md font-bold">{{ formulario.rol.mje }}</p>
                     </div>
                 </div>
-                <p class="text-red-600 mb-2 bg-black p-2" v-if="!formulario.exito">Debe completar todos los campos del formulario</p>
                 <button type="submit" class="w-2/3 border p-2 bg-[#dc2626] text-xl text-white rounded-md" @click.prevent="Registrarse()">Registrarse</button>
             </form>
         </div>
@@ -58,7 +57,6 @@ export default {
     data() {
         return {
             formulario: {
-                exito: true,
                 dni: {
                     value: '',
                     isValido: false,
@@ -90,66 +88,64 @@ export default {
     methods:{
         async Registrarse(){
             const usuario = this.usuarios.find((user) => user.dni == this.formulario.dni.value);
-            let ultimoId = await servicios.obtenerUltimoIdUsuarios()
             const user = {
-                    "id": ultimoId + 1,
                     "dni": this.formulario.dni.value ,
-                    "nombre": this.formulario.usuario.value ,
+                    "usuario": this.formulario.usuario.value ,
                     "password": this.formulario.password.value ,
                     "rol": this.formulario.rol.value
             }
             if(!usuario){
                 if(this.formulario.dni.isValido && this.formulario.usuario.isValido && this.formulario.password.isValido && this.formulario.rol.isValido){
-                    this.formulario.exito = true
                     servicios.agregarUsuario(user)
                     this.formulario.dni.value = ''
                     this.formulario.usuario.value = ''
                     this.formulario.password.value = ''
                     this.formulario.rol.value = ''
-                }else{
-                    this.formulario.exito = false
                 }
             }else{
-                this.formulario.exito = true
                 alert('Usuario ya existe')
             }
         },
         validarDni(){
             const regular_dni = /^\d{8}(?:[-\s]\d{4})?$/;
-           if(regular_dni.test(this.formulario.dni.value) && this.formulario.dni.value >= 0){
-               this.formulario.dni.isValido = true
-               this.formulario.dni.mje = 'Dni Valido'
-           }else{
-               this.formulario.dni.isValido = false
-               this.formulario.dni.mje = 'Dni No Valido'
-           }
+            if(this.formulario.dni.value == ''){
+                    this.formulario.dni.isValido = false
+                    this.formulario.dni.mje = 'Value is required'
+            }else{
+                if(regular_dni.test(this.formulario.dni.value) && this.formulario.dni.value >= 0){
+                    this.formulario.dni.isValido = true
+                    this.formulario.dni.mje = 'Valido'   
+                }else{
+                    this.formulario.dni.isValido = false
+                    this.formulario.dni.mje = 'invalid format'
+                }
+            }
         },
         validarUsuario(){
             if(this.formulario.usuario.value == ''){
                 this.formulario.usuario.isValido = false
-                this.formulario.usuario.mje = 'Usuario No Usuario'
+                this.formulario.usuario.mje = 'Value is required'
             }else{
                 this.formulario.usuario.isValido = true
-                this.formulario.usuario.mje = 'Usuario Valido'
+                this.formulario.usuario.mje = 'Valido'
             }
         },
         validarPassword(){
-            console.log('validar contraseña')
             if(this.formulario.password.value == ''){
                  this.formulario.password.isValido = false
-                 this.formulario.password.mje = 'Contraseña No Valida'
+                 this.formulario.password.mje = 'Value is required'
             }else{
                  this.formulario.password.isValido = true
-                 this.formulario.password.mje = 'Contraseña Valida'
+                 this.formulario.password.mje = 'Valida'
             }
         },
         validarRol(){
             if(this.formulario.rol.value == ''){
                 this.formulario.rol.isValido = false
-                this.formulario.rol.mje = 'Rol No Valido'
+                this.formulario.rol.mje = 'Value is required'
             }else{
                 this.formulario.rol.isValido = true
-                this.formulario.rol.mje = 'Rol Valido'
+                this.formulario.rol.mje = 'Valido'
             }
         }
     }
