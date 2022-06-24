@@ -26,7 +26,7 @@
                 <img src="../assets/images/user.png" alt="user">
                 <h3 class="text-md md:text-xl">{{ getUser.usuario }}</h3>
               </div>
-              <button class="flex justify-center p-3 md:p-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="this.Salir">Cerrar Sesion</button>
+              <button class="flex w-full md:w-auto justify-center p-3 md:p-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="this.Salir">Cerrar Sesion</button>
             </div>
         </div>
     </div>
