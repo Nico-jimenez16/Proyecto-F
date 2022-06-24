@@ -137,7 +137,7 @@ export default {
 
     // Agrega una compra del usuario en objetos al json
 
-    async agregarCompraXUsuario(obj){
+    async registrarCompra(obj){
         try {
             await axios.post(ApiCompras, obj );
             alert('Compra Registrada')

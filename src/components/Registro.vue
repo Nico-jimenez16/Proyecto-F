@@ -101,6 +101,8 @@ export default {
                     this.formulario.usuario.value = ''
                     this.formulario.password.value = ''
                     this.formulario.rol.value = ''
+                }else{
+                    alert('Debe completar todos los campos')
                 }
             }else{
                 alert('Usuario ya existe')

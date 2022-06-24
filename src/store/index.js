@@ -75,18 +75,24 @@ export default new Vuex.Store({
     agregarProductos(state, nuevoProd){
       let bag = state.productos.find((prod) => prod.id == nuevoProd.id);
       if(bag){
-        bag.enCarrito +=1
-        state.total += nuevoProd.precio
+        if(bag.enCarrito < bag.disponibilidad){
+          bag.enCarrito += nuevoProd.enCarrito
+          state.total += nuevoProd.precio * nuevoProd.enCarrito
+        }
+        else{
+          bag.enCarrito
+          state.total
+        }
       }
       else{
         if(!bag && state.productos.length == 0){
           state.productos.push(nuevoProd)
           state.show = !state.show
-          state.total += nuevoProd.precio
+          state.total += nuevoProd.precio * nuevoProd.enCarrito
         }
         else {
           state.productos.push(nuevoProd)
-          state.total += nuevoProd.precio
+          state.total += nuevoProd.precio * nuevoProd.enCarrito
         }
       }
     },

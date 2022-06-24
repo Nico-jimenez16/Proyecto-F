@@ -19,16 +19,15 @@
                           <div class="mt-2">
                               <h1 class="w-full font-bold">{{ producto.descripcion }}</h1>
                               <h2 class="w-full">Precio $ {{ producto.precio }}</h2>
-                              <label class="flex justify-start">Detalle</label>
-                              <p class="whitespace-nowrap	text-ellipsis	overflow-hidden text-sm border-t-2 h-12 pt-2 items-center">{{ producto.detalle }}</p>
+                              <p class="whitespace-nowrap	text-ellipsis	overflow-hidden text-sm h-12 pt-2 items-center">{{ producto.detalle }}</p>
                           </div>
                       </div>
                       <div class="flex flex-col mt-2">
-                        <button class="bg-lime-600 p-4 rounded-xl text-white mb-2" @click="Agregar(producto)">Agregar a Carrito</button>
+                        <button v-if="producto.disponibilidad != 0" class="bg-lime-600 p-4 rounded-xl text-white mb-2" @click="Agregar(producto)">Agregar a Carrito</button>
                         <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
                           <button v-if="getUser.rol == 'admin' " class="w-full bg-cyan-700 p-4 rounded-xl text-white">Modo Administrador</button>                     
                         </router-link>
-                        <p v-if="producto.disponibilidad == 0" class="p-4 rounded-xl text-[#dc2626]">Sin Stock</p>
+                        <p v-if="producto.disponibilidad == 0" class="p-4 rounded-xl text-xl text-[#dc2626]">Sin Stock</p>
                         <p v-if="producto.enCarrito != 0" class="bg-red-600 w-1/6 rounded-xl text-white">{{producto.enCarrito}}</p>
                       </div>
                   </div> 

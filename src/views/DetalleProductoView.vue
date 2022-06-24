@@ -14,7 +14,21 @@
                         <div class="text-red-600 w-1/2 text-2xl">Precio:</div>
                         <div class="w-1/2 text-2xl">$ {{prod.precio}}</div>
                     </div>
-                    <button class="w-2/3 bg-lime-600 p-4 rounded-xl text-white mt-4" @click="AgregarCarrito(prod)">Agregar a Carrito</button>
+                    <div v-if="prod.disponibilidad != 0" class="flex flex-col">
+                        <p class="text-xl text-black font-bold">Cantidad:</p>
+                        <div class="flex justify-center items-center text-black font-bold m-2" >
+                            <button class="w-1/6 mr-2 border-[#2c3e50] rounded-xl border-2 p-2 hover:bg-[#2c3e50] hover:text-white" @click="Restar">-</button>
+                                <input disabled class="w-1/4 p-2 border-[#2c3e50] rounded-xl border-2" min="1" type="number" v-model.number="cantidadCarrito">
+                            <button class="w-1/6 ml-2 border-[#2c3e50] rounded-xl border-2 p-2 hover:bg-[#2c3e50] hover:text-white" @click="Sumar">+</button>
+                        </div>
+                        <span class="text-[#dc2626]" v-if="mje != ''">{{ mje }}</span>
+                        <router-link :to="{name: 'productos'}">
+                            <button class="w-2/3 bg-lime-600 p-4 rounded-xl text-white mt-4" @click="AgregarCarrito(prod)">Agregar a Carrito</button>
+                        </router-link>
+                    </div>
+                    <div v-else class="flex flex-col" >
+                        <span class="text-xl p-4 text-[#dc2626]">Sin Stock</span>
+                    </div>
                 </div>
             </div>
             <div name="actualizacion de producto" v-if="getUser.rol == 'admin' " class="bg-lime-300 m-2 mt-4 md:m-8">   
@@ -71,6 +85,8 @@ export default {
     data() {
         return {
             view: 'Detalle de Productos',
+            cantidadCarrito: 1,
+            mje: '',
             producto: [],
             parametro: this.$route.params.id,
             form: {
@@ -126,9 +142,12 @@ export default {
                     "precio": producto.precio,
                     "disponibilidad" : producto.disponibilidad,
                     "favorito": producto.favorito,
-                    "enCarrito": 1
+                    "enCarrito": this.cantidadCarrito
             }
-            this.agregarProductos(prod)
+            if(this.cantidadCarrito > 0 )
+                this.agregarProductos(prod)
+            else
+                alert('Solo numeros Positivos')
         },
         async eliminarProducto(id){
             let response = await servicios.delleteProducto(id)
@@ -151,6 +170,24 @@ export default {
             if(this.form.favorito == 'true') 
                 return true 
             return false
+        },
+        Restar(){
+            if(this.cantidadCarrito > 1 ){
+                this.mje = ''
+                this.cantidadCarrito--
+            }
+            else
+                this.cantidadCarrito = 1
+        },
+        Sumar(){
+            for(let prod of this.producto)
+                if(this.cantidadCarrito < prod.disponibilidad){
+                    this.cantidadCarrito++
+                }
+                else{
+                    this.mje = 'Disponibilidad Maxima'
+                    this.cantidadCarrito
+                }
         }
     },
     validations () {

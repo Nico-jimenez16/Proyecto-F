@@ -2,7 +2,7 @@
   <div class="home">
     <h1 class="text-3xl mt-4 font-bold">{{ view }}</h1>
     <div class="flex justify-center items-center w-full mt-4">
-      <img class="w-full h-56 md:w-4/5 md:h-80" src="https://dam.ngenespanol.com/wp-content/uploads/2019/04/hamburguesa-mundo.png" alt="banner">
+      <img class="w-full md:w-4/5 h-22 md:h-80" src="https://dam.ngenespanol.com/wp-content/uploads/2019/04/hamburguesa-mundo.png" alt="banner">
     </div>
     <h1 class="text-3xl mt-4 bg-lime-300 p-4">{{ titulo }}</h1>
     <Productos :productos="producto"></Productos>

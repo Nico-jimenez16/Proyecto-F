@@ -45,7 +45,7 @@ export default {
 @media screen and (max-width: 900px) {
   .Carrito{
     display: flex;
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 8.5rem;
   }

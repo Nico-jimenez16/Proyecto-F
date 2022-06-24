@@ -18,13 +18,14 @@
                               <button class="text-black md:border-2 md:bg-black md:text-white ml-4 p-2" @click="DeleteCarrito(producto.id)" >-</button>
                               <button class="text-black md:border-2 md:bg-black md:text-white ml-4 p-2" @click="Agregar(producto)" >+</button>
                           </div>
+                          <span v-if="producto.enCarrito == producto.disponibilidad" class="text-sm text-[#dc2626]">Maximo disponible</span>
                       </div>
-                      <div class="absolute top-0 p-2 right-0 bg-red-500 rounded-md">
+                      <div class="absolute top-0 p-2 right-0 bg-[#dc2626] rounded-md">
                           <h2 class="justify-end">{{ producto.enCarrito }}</h2>
                       </div>
                     </div>
                 <div v-if="getCantidadProductos == 0" class="flex justify-center items-end h-full w-full mt-2">
-                    <h3 class="text-3xl">! No hay productos en el carrito !</h3>
+                    <h3 class="text-xl md:text-3xl">! No hay productos en el carrito !</h3>
                 </div>
             </div>
         </div>
@@ -56,14 +57,15 @@
       <div class="w-full block" v-show="getResultadoLogin && compras != 0">
         <h1 class="text-3xl mt-4 font-bold mt-4 mb-4">Compras Realizadas !</h1>
         <div class="flex flex-wrap justify-center w-full mb-4">
-          <div class="flex flex-col bg-lime-100 border-2 rounded-xl p-4 m-4" v-for="(compra ,i) of compras" :key="i">
-            <div class="text-xl font-bold">Compra</div>
-            <div>User: {{ compra.user }}</div>
-            <div>Descripcion: {{ compra.descripcion }}</div>
-            <div>Precio: {{ compra.precio }}</div>
-            <div>Cantidad: {{ compra.cantidad }}</div>
-            <div>hora: {{ compra.hora }}</div>
-            <div class="text-xl">Total: {{ compra.precio * compra.cantidad }}</div>
+          <div class="flex bg-lime-100 border-2 rounded-xl p-4 m-4" v-for="(compra ,i) of compras" :key="i">
+            <div class="text-xl font-bold">Compra: </div>
+            <div class="ml-2">
+              <div>Descripcion: {{ compra.descripcion }}</div>
+              <div>Precio: {{ compra.precio }}</div>
+              <div>Cantidad: {{ compra.cantidad }}</div>
+              <div>hora: {{ compra.hora }}</div>
+              <div class="text-xl">Total: {{ compra.precio * compra.cantidad }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,10 +121,6 @@ export default {
     DeleteCarrito(id){
       this.eliminarProducto(id)
     },
-    
-    getRandomArbitrary() {
-      return Math.random() * (1000 - 1) + 1;
-    },
 
     async Comprar(productos){
       if(this.getResultadoLogin){
@@ -133,9 +131,8 @@ export default {
               "cantidad" : prod.enCarrito,
               "user": this.getUser.dni,
               "hora": new Date()
-
           }
-          await servicios.agregarCompraXUsuario(compra)
+          await servicios.registrarCompra(compra)
           await this.cargarCompras()
           this.vaciarProductos()
         }
