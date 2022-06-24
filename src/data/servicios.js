@@ -78,6 +78,19 @@ export default {
         }
     },
 
+    // Actualiza la disponibilidad de un producto al realizarce una compra
+
+    async updateDisponibilidad(obj){
+        const prod = {
+            "disponibilidad": obj.disponibilidad - obj.enCarrito,
+        }
+        try {
+            await axios.put(Apiprod + `/${ obj.id }`, prod)
+        } catch (error) {
+            console.error(error)
+        }
+    },
+
     // Obtiene el ultimo id del array de objetos de productos
 
     async obtenerUltimoIdProductos(){

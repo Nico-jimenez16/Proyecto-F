@@ -132,6 +132,7 @@ export default {
               "user": this.getUser.dni,
               "hora": new Date()
           }
+          await servicios.updateDisponibilidad(prod)
           await servicios.registrarCompra(compra)
           await this.cargarCompras()
           this.vaciarProductos()
