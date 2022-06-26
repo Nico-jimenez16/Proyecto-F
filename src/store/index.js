@@ -113,7 +113,15 @@ export default new Vuex.Store({
       state.productos = []
       state.total = 0
       state.show = false
+    },
+    sacarDelCarrito(state, id){
+        console.log(id)
+        let prod = state.productos.find((prod) => prod.id == id)
+        let Indexprod = state.productos.findIndex((prod) => prod.id == id)
+        state.total -= prod.precio * prod.enCarrito
+        state.productos.splice(Indexprod , 1)
     }
+
   },
   actions: {
 

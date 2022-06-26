@@ -8,8 +8,8 @@
           </div>
           <div class="w-full bg-state-300 p-4 mt-2">
               <div class="w-full flex flex-row flex-wrap justify-center">
-                  <div v-for="(producto, index) of productos" :key="index" class="relative shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 w-full lg:w-1/3 xl:w-1/4 bg-transparent text-black m-4 border-2 rounded-xl p-4">
-                      <img v-if="producto.favorito" src="https://img2.freepng.es/20180330/ije/kisspng-check-mark-computer-icons-clip-art-green-tick-5abe6d03cd5cd5.7558588915224291878412.jpg" class="flex absolute top-0 right-0 w-1/5 lg:w-1/4">
+                  <div v-for="(producto, index) of productos" :key="index" class="relative shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 w-full md:w-1/3 lg:w-1/3 xl:w-1/4 bg-transparent text-black m-4 border-2 rounded-xl p-4">
+                      <img v-if="producto.favorito" src="https://cdn-icons-png.flaticon.com/512/3699/3699516.png" class="flex absolute top-0 right-0 w-1/5 lg:w-1/5">
                       <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
                         <div class="h-56">
                           <img :src="getImage(producto.url)" class="h-full m-auto" :alt="producto.descripcion">
