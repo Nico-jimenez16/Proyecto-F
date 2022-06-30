@@ -8,20 +8,20 @@
           </div>
           <div class="w-full bg-state-300 p-4 mt-2">
               <div class="w-full flex flex-row flex-wrap justify-center">
-                  <div v-for="(producto, index) of productos" :key="index" class="relative shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 w-full md:w-1/3 lg:w-1/3 xl:w-1/4 bg-transparent text-black m-4 border-2 rounded-xl p-4">
-                      <img v-if="producto.favorito" src="https://cdn-icons-png.flaticon.com/512/3699/3699516.png" class="flex absolute top-0 right-0 w-1/5 lg:w-1/5">
+                  <div v-for="(producto, index) of productos" :key="index" class="relative shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 p-4 m-4 w-full md:w-2/5 lg:w-1/3 xl:w-1/4 bg-transparent text-black border-2 rounded-xl product">
                       <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
                         <div class="h-56">
-                          <img :src="getImage(producto.url)" class="h-full m-auto" :alt="producto.descripcion">
+                          <img :src="getImage(producto.url)" class="w-full h-full m-auto" :alt="producto.descripcion">
                         </div>
                       </router-link>
                       <div class="flex flex-col w-full">
-                          <div class="mt-2">
-                              <h1 class="w-full font-bold">{{ producto.descripcion }}</h1>
+                        <div class="mt-2">
+                          <h1 class="w-full font-bold">{{ producto.descripcion }}</h1>
                               <h2 class="w-full">Precio $ {{ producto.precio }}</h2>
                               <p class="whitespace-nowrap	text-ellipsis	overflow-hidden text-sm h-12 pt-2 items-center">{{ producto.detalle }}</p>
                           </div>
                       </div>
+                      <img v-if="producto.favorito" src="https://cdn-icons-png.flaticon.com/512/3699/3699516.png" class="flex absolute top-0 right-0 w-1/5 lg:w-1/5">
                       <div class="flex flex-col mt-2">
                         <button v-if="producto.disponibilidad != 0" class="bg-lime-600 p-4 rounded-xl text-white mb-2" @click="Agregar(producto)">Agregar a Carrito</button>
                         <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
@@ -105,4 +105,9 @@ input[type=number]::-webkit-outer-spin-button {
 -webkit-appearance: none;
 margin: 0;
 }
+
+.product{
+  min-width: 17.5rem;
+}
+
 </style>

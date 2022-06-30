@@ -1,7 +1,7 @@
 <template>
   <div class="Header">
     <div class="text-white w-full p-4 h-36 mb-2">
-        <div class="flex w-full h-full text-black border-b">
+        <div class="flex w-full h-full text-black md:border-b">
             <div class="flex w-1/2 flex-col font-bold hidden md:flex items-start justify-center">
                 <h2 class="text-2xl">{{ titulo }}</h2>
                 <a class="text-xl">{{ entrega }}</a>
@@ -9,7 +9,7 @@
             <div class="flex w-1/2 md:hidden items-center justify-center mb-2 pr-4">
                 <h2 class="text-xl sm:text-lg">{{ titulo }}</h2>
             </div>
-            <div v-if="!getResultadoLogin" class="block md:flex w-1/2 justify-center items-center">
+            <div v-if="!getResultadoLogin" class="block m-auto md:flex w-1/2 justify-center items-center">
               <router-link :to="{name: 'login'}">
                 <div class="flex justify-center items-center w-full h-10 mr-2 border-2 rounded-full px-2 bg-white">
                   <p class="w-full">Iniciar Sesion</p>
@@ -21,7 +21,7 @@
                 </div>
               </router-link>
             </div>
-            <div v-if="getResultadoLogin" class="block md:flex w-1/2 justify-center items-center">
+            <div v-if="getResultadoLogin" class="block m-auto md:flex w-1/2 justify-center items-center">
               <div class="flex justify-center items-center text-black rounded-xl mb-1 md:mb-0 p-0 md:py-2 md:px-4 user">
                 <img src="../assets/images/user.png" alt="user">
                 <h3 class="text-md md:text-xl">{{ getUser.usuario }}</h3>

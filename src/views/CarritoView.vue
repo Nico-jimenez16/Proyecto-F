@@ -83,7 +83,7 @@
 <script>
 import { mapGetters , mapMutations } from 'vuex'
 import servicios from '@/data/servicios'
-
+let moment = require('moment')
 
 export default {
   name: 'CarritoView',
@@ -91,7 +91,8 @@ export default {
     return {
       view: 'Carrito',
       observaciones: '',
-      compras: []
+      compras: [],
+      moment: moment
     }
   },
   computed: {
@@ -108,6 +109,11 @@ export default {
     ...mapMutations(
       ['agregarProductos', 'eliminarProducto', 'vaciarProductos' , 'sacarDelCarrito']
     ),
+
+    getHoraActual(){
+      const hora = moment().format('MMMM Do YYYY, h:mm:ss a');
+      return hora
+    },
 
     getImage(img){
       return require(`@/assets/images/${img}`)
@@ -143,7 +149,7 @@ export default {
               "precio": prod.precio,
               "cantidad" : prod.enCarrito,
               "user": this.getUser.dni,
-              "hora": new Date(),
+              "hora": this.getHoraActual(),
               "observaciones" : this.observaciones
           }
           await servicios.updateDisponibilidad(prod)
