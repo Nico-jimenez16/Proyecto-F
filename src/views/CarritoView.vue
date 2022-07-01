@@ -5,7 +5,7 @@
         <div class="w-full md:w-1/2 bg-state-300 movies mt-2">
             <div class="flex w-full flex-col justify-center items-center">
                   <h2 v-if="getCantidadProductos != 0" class="text-xl font-bold mb-4">Productos Seleccionados !</h2>
-                    <div v-for="(producto, index) of getProductos" :key="index" class="flex mb-2 relative shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 w-full lg:w-3/4 xl:w-3/4 bg-transparent text-black font-bold border-2 rounded-xl p-4">
+                    <div v-for="(producto, index) of getProductos" :key="index" class="flex mb-2 relative shadow-lg w-full lg:w-3/4 xl:w-3/4 bg-transparent text-black font-bold border-2 rounded-xl p-4">
                       <div class="w-1/2 h-32">
                         <img :src="getImage(producto.url)" class="h-full m-auto" :alt="producto.descripcion">
                       </div>
@@ -16,10 +16,9 @@
                               <p class="w-full">$ {{ producto.precio }}</p>
                           </div>
                           <div class="mt-2">
-                              <button class="text-black md:border-2 md:bg-black md:text-white ml-4 p-2" @click="DeleteCarrito(producto.id)" >-</button>
-                              <button class="text-black md:border-2 md:bg-black md:text-white ml-4 p-2" @click="Agregar(producto)" >+</button>
+                              <button class="w-10 text-black md:bg-black md:text-white ml-4 p-2 carrito-button" @click="DeleteCarrito(producto.id)" >-</button>
+                              <button class="w-10 text-black md:bg-black md:text-white ml-4 p-2 carrito-button" @click="Agregar(producto)" >+</button>
                           </div>
-                          <!-- <span v-if="producto.enCarrito == producto.disponibilidad" class="text-sm text-[#dc2626]">Maximo disponible</span> -->
                       </div>
                       <div class="absolute top-0 p-2 right-0 bg-[#dc2626] rounded-md">
                           <h2 class="justify-end">{{ producto.enCarrito }}</h2>
@@ -187,6 +186,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.carrito-button{
+  clip-path: circle(50%);
+}
 </style>
