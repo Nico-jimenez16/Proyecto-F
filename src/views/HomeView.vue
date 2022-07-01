@@ -1,10 +1,16 @@
 <template>
   <div class="home">
-    <h1 class="text-3xl mt-4 font-bold">{{ view }}</h1>
-    <div class="flex justify-center items-center w-full mt-4">
-      <img class="w-full md:w-4/5 h-22 md:h-80" src="https://dam.ngenespanol.com/wp-content/uploads/2019/04/hamburguesa-mundo.png" alt="banner">
+    <!-- <h1 class="text-3xl mt-4 font-bold">{{ view }}</h1> -->
+    <div class="flex justify-center items-center w-full">
+      <div class="flex flex-col absolute w-full justify-end items-center p-2 md:p-4 backdrop-opacity-10 backdrop-invert bg-white/30">
+        <h2 class="text-md md:text-4xl font-bold text-[#2c3e50] p-4">TUS MEJORES COMIDAS AQUI !!</h2>
+        <router-link class="w-1/2 md:w-1/5" :to="{name: 'productos'}">
+          <div class="p-2 text-white bg-[#2c3e50] rounded-xl font-bold border-2">Hace tu Pedido</div>
+        </router-link>
+      </div>
+      <img class="w-full h-22 md:h-80" src="https://dam.ngenespanol.com/wp-content/uploads/2019/04/hamburguesa-mundo.png" alt="banner">
     </div>
-    <h1 class="text-3xl mt-4 bg-lime-300 p-4">{{ titulo }}</h1>
+    <h1 class="text-3xl mt-2 bg-lime-300 p-4">{{ titulo }}</h1>
     <Productos :productos="producto"></Productos>
     <Carrito></Carrito>
     <router-link :to="{ name: 'productos'}" >

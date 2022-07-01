@@ -43,11 +43,6 @@ import { mapGetters , mapMutations } from 'vuex'
 
 export default {
   name: 'Productos',
-  data(){
-    return{
-      
-    }
-  },
   props: {
     productos:{
       type: Array,
@@ -88,12 +83,6 @@ export default {
           }
       this.agregarProductos(prod)
     },
-
-    // FUNCION PARA ELIMINAR PRODUCTOS DEL CARRITO
-
-    // DeleteCarrito(id){
-    //   this.eliminarProducto(id)
-    // }
   }
   
 }

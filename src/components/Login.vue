@@ -9,9 +9,7 @@
                 <div class="flex justify-center w-full mb-2">
                     <input class="w-3/4 border p-4" type="password" placeholder="Ingrese password" v-model.trim="usuario.password">
                 </div>
-                <router-link :to="ruta">
-                    <button class="w-3/4 p-2 text-white bg-[#dc2626] border-2 m-auto rounded-md" @click="ValidarLogin()">Ingresar</button>
-                </router-link>
+                <button class="w-3/4 p-2 text-white bg-[#dc2626] border-2 m-auto rounded-md" @click="ValidarLogin()">Ingresar</button>
                 <router-link :to="{name: 'registro'}">
                     <div class="flex justify-center mt-4">
                          Crear una cuenta
@@ -62,12 +60,12 @@ export default {
             if(resultado) {
                 this.agregarUser(resultado)
                 this.agregarResultadoLogin(true)
-                this.ruta = '/'
+                this.$router.replace( {name: 'home'} )
                 alert('Login Exitoso')
             }
             else{
                 alert('Login Fallido !! Usuario o Contraseña Invalido')
-                this.ruta = '/login'
+                this.$router.replace( {name: 'login'} )
                 this.usuario.password = ''
             }
         }

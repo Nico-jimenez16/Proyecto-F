@@ -1,6 +1,6 @@
 <template>
   <div class="Header">
-    <div class="text-white w-full p-4 h-36 mb-2">
+    <div class="text-white w-full p-4 h-36 mb-2 bg-lime-300">
         <div class="flex w-full h-full text-black md:border-b">
             <div class="flex w-1/2 flex-col font-bold hidden md:flex items-start justify-center">
                 <h2 class="text-2xl">{{ titulo }}</h2>
@@ -63,9 +63,6 @@ export default {
 </script>
 
 <style scoped>
-.Header{
-  background-image: url('https://ingenieriademenu.com/wp-content/uploads/2021/01/Pollo-biryani-comida-hindu.jpg');
-}
 .user , .salir{
   border: 2px solid rgb(101 163 13);
   background-color: aliceblue;

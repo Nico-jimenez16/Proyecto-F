@@ -51,13 +51,15 @@
                         <label for="disponibilidad">Disponibilidad</label>
                     <input name="disponibilidad" class="border p-2" placeholder="disponibilidad" type="text" v-model.number="form.disponibilidad">
                         <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.disponibilidad.$error">{{ v$.form.disponibilidad.$errors[0].$message }}</span>
-                        
-                        <label for="favorito">Favorito</label>
-                    <input name="favorito" class="flex border p-2" value="true" placeholder="favorito" @change="validarBooleano" type="radio" v-model="form.favorito">
-                        <label class="flex mb-2" for="true">true</label>
-                    <input name="favorito" class="flex border p-2" value="false" placeholder="favorito" @change="validarBooleano" type="radio" v-model="form.favorito">
+                    
+                    <label for="favorito">Favorito</label>
+                    <div class="flex justify-start items-center">
+                            <input name="favorito" class="border p-2 mr-2" value="true" placeholder="favorito" @change="validarBooleano" type="radio" v-model="form.favorito">
+                        <label class="flex mr-4" for="true">true</label>
+                            <input name="favorito" class="border p-2 mr-2" value="false" placeholder="favorito" @change="validarBooleano" type="radio" v-model="form.favorito">
                         <label class="flex" for="false">false</label>
-                        <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.favorito.$error">{{ v$.form.favorito.$errors[0].$message }}</span>
+                    </div>
+                    <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="v$.form.favorito.$error">{{ v$.form.favorito.$errors[0].$message }}</span>
 
                         <label for="detalle">Detalle</label>
                     <input name="detalle" class="border p-2" placeholder="detalle" type="text" v-model.trim="form.detalle">

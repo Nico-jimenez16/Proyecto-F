@@ -96,11 +96,12 @@ export default {
             }
             if(!usuario){
                 if(this.formulario.dni.isValido && this.formulario.usuario.isValido && this.formulario.password.isValido && this.formulario.rol.isValido){
-                    servicios.agregarUsuario(user)
+                    await servicios.agregarUsuario(user)
                     this.formulario.dni.value = ''
                     this.formulario.usuario.value = ''
                     this.formulario.password.value = ''
                     this.formulario.rol.value = ''
+                    this.$router.replace({name: 'login'})
                 }else{
                     alert('Debe completar todos los campos')
                 }
