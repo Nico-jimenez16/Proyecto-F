@@ -4,7 +4,7 @@
         <div class="flex flex-col p-8" v-for="(prod,i) of producto" :key="i">
             <div class="block lg:flex">
                 <div class="w-full lg:w-1/2">
-                    <img :src="getImage(prod.url)" alt="">
+                    <img :src="prod.url" alt="">
                 </div>
                 <div class="w-full mt-4 lg:m-0 lg:w-1/2">
                     <h2 class="text-2xl">Detalle del Producto</h2>

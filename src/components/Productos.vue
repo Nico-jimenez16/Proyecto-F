@@ -11,7 +11,7 @@
                   <div v-for="(producto, index) of productos" :key="index" class="relative shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 p-4 m-4 w-full md:w-2/5 lg:w-1/3 xl:w-1/4 bg-transparent text-black border-2 rounded-xl product">
                       <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
                         <div class="h-56">
-                          <img :src="getImage(producto.url)" class="w-full h-full m-auto" :alt="producto.descripcion">
+                          <img :src="producto.url" class="w-full h-full m-auto" :alt="producto.descripcion">
                         </div>
                       </router-link>
                       <div class="flex flex-col w-full">
@@ -25,7 +25,7 @@
                       <div class="flex flex-col mt-2">
                         <button v-if="producto.disponibilidad != 0" class="bg-lime-600 p-4 rounded-xl text-white mb-2" @click="Agregar(producto)">Agregar a Carrito</button>
                         <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
-                          <button v-if="getUser.rol == 'admin' " class="w-full bg-cyan-700 p-4 rounded-xl text-white">Modo Administrador</button>                     
+                          <button v-if="getUser.rol == 'admin' " class="w-full bg-cyan-700 p-4 rounded-xl text-white">Administrador</button>             
                         </router-link>
                         <p v-if="producto.disponibilidad == 0" class="p-4 rounded-xl text-xl text-[#dc2626]">Sin Stock</p>
                         <p v-if="producto.enCarrito != 0" class="bg-red-600 w-1/6 rounded-xl text-white">{{producto.enCarrito}}</p>
@@ -58,7 +58,7 @@ export default {
   methods: {
 
     ...mapMutations(
-      ['agregarProductos', 'eliminarProducto' , 'CambiarShow']
+      ['agregarProductos', 'eliminarProducto' , 'CambiarShow' , 'estaEnCarrito']
     ),
 
 

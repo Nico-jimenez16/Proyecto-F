@@ -10,7 +10,7 @@
                     <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="this.v$.form.descripcion.$error">{{ this.v$.form.descripcion.$errors[0].$message }}</span>
                     
                     <label for="url">Imagen</label>
-                <input class="border p-2" placeholder="Ingrese nombre de la imagen ( Recuerde que la imagen debe estar en assets/images ) Prueba: pizza-argentina.jpg" name="url" type="text" v-model="form.url">
+                <input class="border p-2" placeholder="Ingrese url de la imagen" name="url" type="text" v-model="form.url">
                     <span class="bg-red-500 text-white text-sm md:text-md font-bold" v-if="this.v$.form.url.$error">{{ this.v$.form.url.$errors[0].$message }}</span>
 
                     <label for="precio">Precio</label>

@@ -7,7 +7,7 @@
                   <h2 v-if="getCantidadProductos != 0" class="text-xl font-bold mb-4">Productos Seleccionados !</h2>
                     <div v-for="(producto, index) of getProductos" :key="index" class="flex mb-2 relative shadow-lg w-full lg:w-3/4 xl:w-3/4 bg-transparent text-black font-bold border-2 rounded-xl p-4">
                       <div class="w-1/2 h-32">
-                        <img :src="getImage(producto.url)" class="h-full m-auto" :alt="producto.descripcion">
+                        <img :src="producto.url" class="h-full m-auto" :alt="producto.descripcion">
                       </div>
                       <div class="flex flex-col w-1/2 h-auto">
                           <span v-if="producto.enCarrito == producto.disponibilidad" class="text-sm text-[#dc2626]">Maximo disponible</span>
