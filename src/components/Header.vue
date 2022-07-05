@@ -1,6 +1,6 @@
 <template>
   <div class="Header">
-    <div class="text-white w-full p-4 h-36 mb-2 bg-lime-300">
+    <div class="text-white w-full p-2 h-32 mb-2 bg-lime-300">
         <div class="flex w-full h-full text-black md:border-b">
             <div class="flex w-1/2 flex-col font-bold hidden md:flex items-start justify-center">
                 <h2 class="text-2xl">{{ titulo }}</h2>
@@ -21,12 +21,12 @@
                 </div>
               </router-link>
             </div>
-            <div v-if="getResultadoLogin" class="block m-auto md:flex w-1/2 justify-center items-center">
+            <div v-if="getResultadoLogin" class="block m-auto md:flex w-1/2 h-1/2 justify-center items-center">
               <div class="flex justify-center items-center text-black rounded-xl mb-1 md:mb-0 p-0 md:py-2 md:px-4 user">
                 <img class="h-10" src="../assets/images/user.png" alt="user">
                 <h3 class="text-md md:text-xl">{{ getUser.usuario }}</h3>
               </div>
-              <button class="flex w-full md:w-auto justify-center p-3 md:py-3 md:px-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="this.Salir">Cerrar Sesion</button>
+              <button class="flex w-full md:w-auto justify-center p-2 md:py-3 md:px-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="this.Salir">Cerrar Sesion</button>
             </div>
         </div>
     </div>
