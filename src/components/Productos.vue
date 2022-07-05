@@ -58,15 +58,8 @@ export default {
   methods: {
 
     ...mapMutations(
-      ['agregarProductos', 'eliminarProducto' , 'CambiarShow' , 'estaEnCarrito']
+      ['agregarProductos', 'eliminarProducto' , 'CambiarShow']
     ),
-
-
-    // FUNCION PARA LEER LAS IMAGENES QUE ESTAN EN ASSETS/IMAGE
-
-    getImage(img){
-      return require(`@/assets/images/${img}`)
-    },
 
     // FUNCION PARA AGREGAR PRODUCTOS AL CARRITO
 
@@ -88,7 +81,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
 -webkit-appearance: none;

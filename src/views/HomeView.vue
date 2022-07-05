@@ -2,8 +2,8 @@
   <div class="home">
     <!-- <h1 class="text-3xl mt-4 font-bold">{{ view }}</h1> -->
     <div class="flex justify-center items-center w-full">
-      <div class="flex flex-col absolute w-full justify-end items-center p-2 md:p-4 backdrop-opacity-10 backdrop-invert bg-white/30">
-        <h2 class="text-md md:text-4xl font-bold text-[#2c3e50] p-4">TUS MEJORES COMIDAS AQUI !!</h2>
+      <div class="flex flex-col absolute w-full justify-end items-center p-2 md:p-4 backdrop-opacity-10 backdrop-invert bg-black/30">
+        <h2 class="text-md md:text-4xl font-bold text-white p-4">TUS MEJORES COMIDAS AQUI !!</h2>
         <router-link class="w-1/2 md:w-1/5" :to="{name: 'productos'}">
           <div class="p-2 text-white bg-[#2c3e50] rounded-xl font-bold border-2">Hace tu Pedido</div>
         </router-link>

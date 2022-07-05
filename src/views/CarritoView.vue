@@ -118,10 +118,6 @@ export default {
       return hora
     },
 
-    getImage(img){
-      return require(`@/assets/images/${img}`)
-    },
-
     // Suma 1 producto al carrito
 
     Agregar(producto){

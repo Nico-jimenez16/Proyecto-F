@@ -120,12 +120,6 @@ export default new Vuex.Store({
         let Indexprod = state.productos.findIndex((prod) => prod.id == id)
         state.total -= prod.precio * prod.enCarrito
         state.productos.splice(Indexprod , 1)
-    },
-    estaEnCarrito(state , id){
-      let bag = state.productos.find((prod) => prod.id == id)
-      if(bag) 
-        return true
-      return false
     }
 
 

@@ -23,10 +23,10 @@
             </div>
             <div v-if="getResultadoLogin" class="block m-auto md:flex w-1/2 justify-center items-center">
               <div class="flex justify-center items-center text-black rounded-xl mb-1 md:mb-0 p-0 md:py-2 md:px-4 user">
-                <img src="../assets/images/user.png" alt="user">
+                <img class="h-10" src="../assets/images/user.png" alt="user">
                 <h3 class="text-md md:text-xl">{{ getUser.usuario }}</h3>
               </div>
-              <button class="flex w-full md:w-auto justify-center p-3 md:p-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="this.Salir">Cerrar Sesion</button>
+              <button class="flex w-full md:w-auto justify-center p-3 md:py-3 md:px-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="this.Salir">Cerrar Sesion</button>
             </div>
         </div>
     </div>

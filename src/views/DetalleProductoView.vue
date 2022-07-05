@@ -131,10 +131,6 @@ export default {
         ...mapMutations(
             ['agregarProductos']
         ),
-
-        getImage(img){
-            return require(`@/assets/images/${img}`)
-        },
         AgregarCarrito(producto){
             const prod = {
 
