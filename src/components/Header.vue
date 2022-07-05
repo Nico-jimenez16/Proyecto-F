@@ -21,8 +21,8 @@
                 </div>
               </router-link>
             </div>
-            <div v-if="getResultadoLogin" class="block m-auto md:flex w-1/2 h-1/2 justify-center items-center">
-              <div class="flex justify-center items-center text-black rounded-xl mb-1 md:mb-0 p-0 md:py-2 md:px-4 user">
+            <div v-if="getResultadoLogin" class="block m-auto md:flex w-1/2 h-auto justify-center items-center">
+              <div class="flex justify-center items-center text-black rounded-xl mb-1 md:mb-0 p-0 md:py-2 md:px-6 user">
                 <img class="h-10" src="../assets/images/user.png" alt="user">
                 <h3 class="text-md md:text-xl">{{ getUser.usuario }}</h3>
               </div>
