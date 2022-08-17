@@ -1,13 +1,17 @@
 <template>
   <div class="Header">
-    <div class="text-white w-full p-2 h-32 mb-2 bg-lime-300">
+    <div class="text-white w-full p-2 h-32 bg-lime-300">
         <div class="flex w-full h-full text-black md:border-b">
             <div class="flex w-1/2 flex-col font-bold hidden md:flex items-start justify-center">
                 <h2 class="text-2xl">{{ titulo }}</h2>
                 <a class="text-xl">{{ entrega }}</a>
             </div>
-            <div class="flex w-1/2 md:hidden items-center justify-center mb-2 pr-4">
-                <h2 class="text-xl sm:text-lg">{{ titulo }}</h2>
+            <div class="flex w-1/2 md:hidden items-center justify-center mb-2 pr-4" >
+              <div class="p-2" @click="CambiarShowMobile">
+                <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0h47.727v2.727H0zM0 13.636h47.727v2.727H0zM0 27.273h47.727V30H0z"></path>
+                </svg>
+              </div>
             </div>
             <div v-if="!getResultadoLogin" class="block m-auto md:flex w-1/2 justify-center items-center">
               <router-link :to="{name: 'login'}">
@@ -43,7 +47,7 @@ export default {
   data() {
       return {
         titulo: 'Angel Nicolas Jimenez',
-        entrega: 'VueJs - Proyecto final'
+        entrega: 'Project - VueJs'
       }
   },
   computed: {
@@ -55,7 +59,7 @@ export default {
   },
   methods:{
     ...mapMutations(
-      ['Salir']
+      ['CambiarShowMobile']
     )
   }
 

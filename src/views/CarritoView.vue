@@ -20,7 +20,7 @@
                               <button class="w-10 text-black md:bg-black md:text-white ml-4 p-2 carrito-button" @click="Agregar(producto)" >+</button>
                           </div>
                       </div>
-                      <div class="absolute top-0 p-2 right-0 bg-[#dc2626] rounded-md">
+                      <div class="absolute top-0 p-2 right-0 bg-[#dc2626] rounded-full text-white">
                           <h2 class="justify-end">{{ producto.enCarrito }}</h2>
                       </div>
                       <div @click="eliminarCarrito(producto.id)" class="w-1/4 md:w-1/5 lg:w-1/6 xl:w-1/6 flex justify-end absolute p-1 right-0 bottom-0  text-white rounded-md">

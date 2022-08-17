@@ -13,7 +13,8 @@ export default new Vuex.Store({
       dni: 0,
       rol: ''
     },
-    total: 0
+    total: 0,
+    Navmobile: false
   },
   getters: {
 
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     getResultadoLogin(state){
       return state.resultadoLogin
+    },
+    getMobile(state){
+      return state.Navmobile
     },
 
     // Productos
@@ -50,6 +54,9 @@ export default new Vuex.Store({
 
     CambiarShow(state){
       state.show = !state.show
+    },
+    CambiarShowMobile(state){
+      state.Navmobile = !state.Navmobile
     },
 
     // Usuario
