@@ -1,6 +1,6 @@
 <template>
   <div class="Header">
-    <div class="text-white w-full p-2 h-32 bg-lime-300">
+    <div class="text-white w-full p-2 h-28 bg-lime-300">
         <div class="flex w-full h-full text-black md:border-b">
             <div class="flex w-1/2 flex-col font-bold hidden md:flex items-start justify-center">
                 <h2 class="text-2xl">{{ titulo }}</h2>
@@ -15,12 +15,12 @@
             </div>
             <div v-if="!getResultadoLogin" class="block m-auto md:flex w-1/2 justify-center items-center">
               <router-link :to="{name: 'login'}">
-                <div class="flex justify-center items-center w-full h-10 mr-2 border-2 rounded-full px-2 bg-white">
+                <div class="flex justify-center items-center w-full h-10 mr-2 border-2 rounded-full px-2  ">
                   <p class="w-full">Iniciar Sesion</p>
                 </div>
               </router-link>
               <router-link :to="{name: 'registro'}">
-                <div class="flex justify-center items-center w-full h-10 mt-2 md:mt-0 md:ml-2 border-2 rounded-full px-2 bg-white">
+                <div class="flex justify-center items-center w-full h-10 mt-2 md:mt-0 md:ml-2 border-2 rounded-full px-2">
                   <p class="w-full">Registrarse</p>
                 </div>
               </router-link>
