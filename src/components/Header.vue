@@ -30,7 +30,7 @@
                 <img class="h-10" src="../assets/images/user.png" alt="user">
                 <h3 class="text-md md:text-xl">{{ getUser.usuario }}</h3>
               </div>
-              <button class="flex w-full md:w-auto justify-center p-2 md:py-3 md:px-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="this.Salir">Cerrar Sesion</button>
+              <button class="flex w-full md:w-auto justify-center p-2 md:py-3 md:px-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="Salir">Cerrar Sesion</button>
             </div>
         </div>
     </div>
@@ -59,8 +59,14 @@ export default {
   },
   methods:{
     ...mapMutations(
-      ['CambiarShowMobile']
-    )
+      ['CambiarShowMobile' , 'agregarResultadoLogin']
+    ),
+    Salir(){
+      this.getUser.usuario = ''
+      this.getUser.dni = ''
+      this.getUser.rol = ''
+      this.agregarResultadoLogin(false)
+    }
   }
 
 }
