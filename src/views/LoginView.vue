@@ -1,6 +1,6 @@
 <template>
     <div class="Login">
-        <h1 class="text-3xl mt-4 font-bold">{{ view }}</h1>
+        <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
         <Login :usuarios="usuarios" ></Login>
     </div>
 </template>
@@ -8,6 +8,7 @@
 <script>
 import Login from '@/components/Login.vue'
 import servicios from '@/data/servicios'
+import { mapMutations } from 'vuex'
 
 
 export default {
@@ -23,6 +24,12 @@ export default {
     },
     async mounted(){
         this.usuarios = await servicios.obtenerUsuarios()
-    }
+        this.CambiarView('Login')
+    },
+    methods:{
+    ...mapMutations(
+            ['CambiarView']
+    ),
+  }
 }
 </script>

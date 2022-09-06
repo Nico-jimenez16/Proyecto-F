@@ -1,80 +1,131 @@
 <template>
-  <div class="Header">
-    <div class="text-white w-full p-2 h-28 bg-lime-300">
-        <div class="flex w-full h-full text-black md:border-b">
-            <div class="flex w-1/2 flex-col font-bold hidden md:flex items-start justify-center">
-                <h2 class="text-2xl">{{ titulo }}</h2>
-                <a class="text-xl">{{ entrega }}</a>
+  <div id="Header" class="w-full h-full">
+    <div class="hidden w-full h-full lg:h-16 lg:flex justify-center items-center p-2 lg:p-4 mb-0 lg:mb-4">
+      <h1 class="text-3xl font-bold">NJ</h1>
+    </div>
+    <div id="desk" class="hidden lg:block">
+      <div class="w-full flex h-14 justify-center items-center mb-4 p-2">
+        <router-link class="flex w-full justify-center items-center" :to="{name: 'home'}">
+            <div class="w-1/2 flex justify-center items-center hover:-translate-y-1 transition duration-300 ease-in-out">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" focusable="false" class="chakra-icon css-1fmr1qf" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z"></path>
+              </svg>
             </div>
-            <div class="flex w-1/2 md:hidden items-center justify-center mb-2 pr-4" >
-              <div class="p-2" @click="CambiarShowMobile">
-                <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 0h47.727v2.727H0zM0 13.636h47.727v2.727H0zM0 27.273h47.727V30H0z"></path>
-                </svg>
-              </div>
+            <div class="afectado">
+                <h3 class="text-lg pl-2 font-bold">Home</h3>
             </div>
-            <div v-if="!getResultadoLogin" class="block m-auto md:flex w-1/2 justify-center items-center">
-              <router-link :to="{name: 'login'}">
-                <div class="flex justify-center items-center w-full h-10 mr-2 border-2 rounded-full px-2  ">
-                  <p class="w-full">Iniciar Sesion</p>
-                </div>
-              </router-link>
-              <router-link :to="{name: 'registro'}">
-                <div class="flex justify-center items-center w-full h-10 mt-2 md:mt-0 md:ml-2 border-2 rounded-full px-2">
-                  <p class="w-full">Registrarse</p>
-                </div>
-              </router-link>
+        </router-link>
+      </div>
+      <div class="w-full flex h-14 justify-center items-center mb-4 p-2">
+        <router-link class="flex w-full justify-center items-center" :to="{name:'productos'}">
+            <div class="w-1/2 flex justify-center items-center hover:-translate-y-1 transition duration-300 ease-in-out">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" focusable="false" class="chakra-icon css-1fmr1qf" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 2.01H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.998 5 19.815 5 19.01c0-.101.009-.191.024-.273.112-.575.583-.717.987-.727H20c.018 0 .031-.009.049-.01H21V4.01c0-1.103-.897-2-2-2zm0 14H5v-11c0-.806.55-.988 1-1h7v7l2-1 2 1v-7h2v12z"></path>
+              </svg>
             </div>
-            <div v-if="getResultadoLogin" class="block m-auto md:flex w-1/2 h-auto justify-center items-center">
-              <div class="flex justify-center items-center text-black rounded-xl mb-1 md:mb-0 p-0 md:py-2 md:px-6 user">
-                <img class="h-10" src="../assets/images/user.png" alt="user">
-                <h3 class="text-md md:text-xl">{{ getUser.usuario }}</h3>
-              </div>
-              <button class="flex w-full md:w-auto justify-center p-2 md:py-3 md:px-4 rounded-xl text-black text-md md:text-xl md:ml-4 salir" @click="Salir">Cerrar Sesion</button>
+            <div class="afectado">
+                <h3 class="text-lg pl-2 font-bold">Productos</h3>
             </div>
-        </div>
+        </router-link>
+      </div>
+      <div class="w-full flex h-14 justify-center items-center mb-4 p-2">
+        <router-link class="flex w-full justify-center items-center" :to="{name: 'carrito'}">
+            <div class="w-1/2 flex justify-center items-center">
+              <carrito></carrito>
+            </div>
+            <div class="afectado">
+                <h3 class="text-lg pl-2 font-bold">Carrito</h3>
+            </div>
+        </router-link>
+      </div>
+    </div>
+    <div id="mobile" class="w-full flex flex-row lg:hidden justify-center items-center h-full">
+      <div v-if="!modalNav" @click="ModalView" class="w-1/6 h-auto ml-4">
+        <svg data-v-56587bc9="" width="50" height="30" xmlns="http://www.w3.org/2000/svg">
+          <path data-v-56587bc9="" d="M0 0h47.727v2.727H0zM0 13.636h47.727v2.727H0zM0   27.273h47.727V30H0z"></path>
+        </svg>
+      </div>
+      <div v-else @click="ModalView" class="w-1/6 h-auto ml-4">
+        <img class="w-8" src="https://cdn-icons-png.flaticon.com/512/1828/1828774.png">
+      </div>
+      <div class="w-5/6 flex justify-end items-center h-full">
+        <Navigation></Navigation>
+      </div>
+    </div>
+    <div v-if="modalNav" id="modal" class="model-movile bg-lime-300">
+      <div class="w-full flex justify-center items-center">
+        <h1 class="text-3xl font-bold">NJ</h1>
+      </div>
+      <div class="mt-4">
+        <router-link :to="{name: 'home'}">
+          <div @click="ModalView" class="flex w-full justify-center items-center mb-4 p-4">
+            <h3 class="text-xl pl-2 underline">Home</h3>
+          </div>
+        </router-link>
+        <router-link :to="{name: 'productos'}" >
+          <div @click="ModalView" class="flex w-full justify-center items-center mb-4 p-4">
+            <h3 class="text-xl pl-2 underline">Producto</h3>
+          </div>
+        </router-link>
+        <router-link :to="{name: 'carrito'}">
+          <div @click="ModalView" class="flex w-full justify-center items-center mb-4 p-4">
+            <h3 class="text-xl pl-2 underline">Carrito</h3>
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script>
-import { mapGetters , mapMutations } from 'vuex'
-
+import carrito from './Carrito.vue'
+import Navigation from './Navigation.vue';
 
 export default {
-  name: 'Header',
+  name: 'HeaderComponent',
   data() {
-      return {
-        titulo: 'Angel Nicolas Jimenez',
-        entrega: 'Project - VueJs'
-      }
+    return {
+      modalNav: false
+    }
   },
-  computed: {
-
-    ...mapGetters(
-      ['getResultadoLogin' , 'getUser']
-    )
-
-  },
+  components:{carrito , Navigation},
   methods:{
-    ...mapMutations(
-      ['CambiarShowMobile' , 'agregarResultadoLogin']
-    ),
-    Salir(){
-      this.getUser.usuario = ''
-      this.getUser.dni = ''
-      this.getUser.rol = ''
-      this.agregarResultadoLogin(false)
+    ModalView(){
+      this.modalNav = !this.modalNav
     }
   }
-
 }
 </script>
 
 <style scoped>
-.user , .salir{
-  border: 2px solid rgb(101 163 13);
-  background-color: aliceblue;
-}
+
+  .model-movile{
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    height: 88vh;
+    z-index: 53;
+
+    transition: all 1s ease-in;
+  }
+
+  /* CCS PARA EL HOVER DE LOS NOMBRES . PARA QUE APAREZCAN AL HACERLE HOVER */
+  .afectado{
+    min-width: 0px;
+    width: 0rem;
+    display: none;
+
+    transition: all 0.5s linear;
+  }
+
+  #Header:hover .afectado {
+    width: 16rem;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+  }
+
 </style>

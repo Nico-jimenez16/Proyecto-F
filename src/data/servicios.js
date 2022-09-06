@@ -6,6 +6,7 @@ const ApiCompras = "https://62a123797b9345bcbe46e31d.mockapi.io/compras";
 
 
 export default {
+
                 /////////////////
                 // PRODUCTOS //
               //////////////////
@@ -14,9 +15,9 @@ export default {
 
     async obtenerProductos(){
         try {
-            let respuesta = await axios.get(Apiprod)
-            let productos = await respuesta.data
-            return await productos
+            const response = await axios.get(Apiprod)
+            const data = await response.data
+            return data
 
         } catch (error) {
             console.error(error)
@@ -72,7 +73,6 @@ export default {
         }
         try {
             await axios.put(Apiprod + `/${ obj.id }`, prod)
-            alert('Producto Actualizado')
         } catch (error) {
             console.error(error)
         }
@@ -94,13 +94,12 @@ export default {
     // Obtiene el ultimo id del array de objetos de productos
 
     async obtenerUltimoIdProductos(){
-        let respuesta = await axios.get(Apiprod)
-        let ultimo = await respuesta.data.pop()
-        if(ultimo) return ultimo.id
-        else return 0
+        let response = await axios.get(Apiprod)
+        let ultimo = await response.data.pop()
+        if(ultimo) 
+            return ultimo.id
+        return 0
     },
-
-
 
                 ////////////////
                 // Usuarios //
@@ -110,9 +109,9 @@ export default {
 
     async obtenerUsuarios(){
         try {
-            let respuesta = await axios.get(ApiUsu)
-            let usuarios = await respuesta.data
-            return await usuarios
+            let response = await axios.get(ApiUsu)
+            let data = await response.data
+            return data
 
         } catch (error) {
             console.error(error)
@@ -134,19 +133,16 @@ export default {
     // Obtiene el ultimo id del array de objetos de Usuarios
 
     async obtenerUltimoIdUsuarios(){
-        let respuesta = await axios.get(ApiUsu)
-        let ultimo = await respuesta.data.pop()
-        if(ultimo) return ultimo.id
-        else return 0
+        let response = await axios.get(ApiUsu)
+        let ultimo = await response.data.pop()
+        if(ultimo)
+            return ultimo.id
+        return 0
     },
-
-
 
                 ///////////////
                 // Compras //
               ///////////////
-
-
 
     // Agrega una compra del usuario en objetos al json
 
@@ -163,9 +159,9 @@ export default {
 
     async obtenerProductoXusuario(){
         try {
-            let respuesta = await axios.get(ApiCompras)
-            let compras = await respuesta.data
-            return await compras
+            let response = await axios.get(ApiCompras)
+            let data = await response.data
+            return data
 
         } catch (error) {
             console.error(error)

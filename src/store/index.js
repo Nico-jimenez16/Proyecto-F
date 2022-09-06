@@ -7,16 +7,27 @@ export default new Vuex.Store({
   state: {
     show: false,
     productos: [],
+    precioTotal: 0,
     resultadoLogin: false,
     User: {
       usuario: '',
       dni: 0,
       rol: ''
     },
-    total: 0,
-    Navmobile: false
+    Navmobile: false,
+    view: ''
   },
   getters: {
+
+    GetView(state){
+      return state.view 
+    },
+
+    // Carrito
+
+    getShow(state){
+      return state.show
+    },
 
     // Usuarios
 
@@ -39,16 +50,15 @@ export default new Vuex.Store({
       return state.productos.length
     },
     getTotal(state){
-      return state.total
-    },
-
-    // Carrito
-
-    getShow(state){
-      return state.show
+      return state.precioTotal
     }
+
   },
   mutations: {
+
+    CambiarView(state , view){
+      state.view = view
+    },
 
     // Carrito
 
@@ -70,12 +80,6 @@ export default new Vuex.Store({
     agregarResultadoLogin(state , resultado){
       state.resultadoLogin = resultado
     },
-    Salir(state){
-      state.User.usuario = '',
-      state.User.dni = 0,
-      state.User.rol = ''
-      state.resultadoLogin = false
-    },
 
     // Productos
     
@@ -84,22 +88,22 @@ export default new Vuex.Store({
       if(bag){
         if(bag.enCarrito < bag.disponibilidad){
           bag.enCarrito += nuevoProd.enCarrito
-          state.total += nuevoProd.precio * nuevoProd.enCarrito
+          state.precioTotal += nuevoProd.precio * nuevoProd.enCarrito
         }
         else{
           bag.enCarrito
-          state.total
+          state.precioTotal
         }
       }
       else{
         if(!bag && state.productos.length == 0){
           state.productos.push(nuevoProd)
           state.show = !state.show
-          state.total += nuevoProd.precio * nuevoProd.enCarrito
+          state.precioTotal += nuevoProd.precio * nuevoProd.enCarrito
         }
         else {
           state.productos.push(nuevoProd)
-          state.total += nuevoProd.precio * nuevoProd.enCarrito
+          state.precioTotal += nuevoProd.precio * nuevoProd.enCarrito
         }
       }
     },
@@ -108,24 +112,23 @@ export default new Vuex.Store({
       let prod = state.productos.find((prod) => prod.id == id)
       let Indexprod = state.productos.findIndex((prod) => prod.id == id)
       if(prod.enCarrito == 1){
-        state.total -= prod.precio
+        state.precioTotal -= prod.precio
         state.productos.splice(Indexprod , 1)
       }
       else{
-        state.total -= prod.precio
+        state.precioTotal -= prod.precio
         prod.enCarrito--
       }
     },
     vaciarProductos(state){
       state.productos = []
-      state.total = 0
+      state.precioTotal = 0
       state.show = false
     },
     sacarDelCarrito(state, id){
-        console.log(id)
         let prod = state.productos.find((prod) => prod.id == id)
         let Indexprod = state.productos.findIndex((prod) => prod.id == id)
-        state.total -= prod.precio * prod.enCarrito
+        state.precioTotal -= prod.precio * prod.enCarrito
         state.productos.splice(Indexprod , 1)
     }
 

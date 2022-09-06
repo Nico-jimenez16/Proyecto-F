@@ -1,40 +1,28 @@
 <template>
     <div class="registro">
         <div class="w-full flex flex-col justify-center items-center p-8">
-            <form class="w-full md:w-2/4 text-black bg-lime-300 p-4 mb-8" action="">
+            <form class="w-full md:w-3/4 lg:w-2/4 text-black p-4 mb-8 border-2 rounded-xl" action="">
                 <H1 class="text-2xl text-black mb-2">Formulario de Registro</H1>
-                <div class="flex flex-col h-24">
-                    <div class="w-full">
-                        <label for="dni">Dni</label>
-                    </div>
-                    <input class="w-full p-2 pl-2" type="number" name="dni" id="dni" placeholder="Ingrese dni" @keyup="validarDni" v-model.number="formulario.dni.value">
+                <div class="flex flex-col mb-4">
+                    <input class="w-full border-2 rounded-full p-4" type="number" name="dni" id="dni" placeholder="Ingrese dni" @keyup="validarDni" v-model.number="formulario.dni.value">
                     <div class="w-full bg-red-700" v-if="!formulario.dni.isValido">
                         <p class="w-full bg-red-500 text-white text-sm md:text-md font-bold">{{ formulario.dni.mje }}</p>
                     </div>
                 </div>
-                <div class="flex flex-col h-24">
-                    <div class="w-full">
-                        <label for="usuario">Usuario</label>
-                    </div>
-                    <input class="w-full p-2 pl-2" type="usuario" name="usuario" id="usuario" placeholder="Ingrese usuario" @keyup="validarUsuario" v-model.trim="formulario.usuario.value">
+                <div class="flex flex-col mb-4">
+                    <input class="w-full border-2 rounded-full p-4" type="usuario" name="usuario" id="usuario" placeholder="Ingrese usuario" @keyup="validarUsuario" v-model.trim="formulario.usuario.value">
                     <div class="w-full bg-red-700" v-if="!formulario.usuario.isValido">
                         <p class="bg-red-500 text-white text-sm md:text-md font-bold">{{ formulario.usuario.mje }}</p>
                     </div>
                 </div>
-                <div class="flex flex-col h-24">
-                    <div class="w-full">
-                        <label for="contraseña">Contraseña</label>
-                    </div>
-                    <input class="w-full p-2 pl-2" type="password" name="contraseña" id="contraseña" placeholder="Ingrese Contraseña" @keyup="validarPassword" v-model.trim="formulario.password.value">
+                <div class="flex flex-col mb-4">
+                    <input class="w-full border-2 rounded-full p-4" type="password" name="contraseña" id="contraseña" placeholder="Ingrese Contraseña" @keyup="validarPassword" v-model.trim="formulario.password.value">
                     <div class="w-full bg-red-700" v-if="!formulario.password.isValido">
                         <p class="bg-red-500 text-white text-sm md:text-md font-bold">{{ formulario.password.mje }}</p>
                     </div>
                 </div>
-                <div class="flex flex-col h-24">
-                    <div class="w-full">
-                        <label for="rol">Rol</label>
-                    </div>
-                    <select @change="validarRol" class="w-full p-2" v-model="formulario.rol.value">
+                <div class="flex flex-col mb-4">
+                    <select @change="validarRol" class="w-full border-2 rounded-full p-4" v-model="formulario.rol.value">
                         <option disabled value="roles">Seleccione un rol</option>
                         <option >admin</option>
                         <option >usuario</option>
@@ -53,7 +41,7 @@
 import servicios from '@/data/servicios'
 
 export default {
-    name: 'Registro',
+    name: 'RegistroComponent',
     data() {
         return {
             formulario: {
@@ -154,11 +142,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
--webkit-appearance: none;
-margin: 0;
-}
-</style>
