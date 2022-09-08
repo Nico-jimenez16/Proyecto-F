@@ -61,7 +61,7 @@
             </div>
         </div>
       </div>
-      <div class="w-full block" v-show="getResultadoLogin">
+      <div class="hidden w-full block" v-show="getResultadoLogin">
         <h1 class="text-3xl mt-4 font-bold mb-4">Compras Realizadas !</h1>
         <button v-if="!historial" @click="historial = !historial" class="w-3/4 p-4 text-md md:text-xl bg-lime-600 rounded-xl mb-4 text-white">Click para ver Historial</button>
         <button v-else @click="historial = !historial" class="w-3/4 p-4 text-md md:text-xl bg-lime-600 rounded-xl mb-4 text-white">Click para Ocultar Historial</button>
@@ -70,10 +70,10 @@
             <h3 class="text-xl font-bold">Compra: </h3>
             <div class="ml-2">
               <div class="text-xl text-black">{{ compra.descripcion }}</div>
-              <div>Precio: {{ compra.precio }}</div>
+              <div>Precio: ${{ compra.precio }}</div>
               <div>Cantidad: {{ compra.cantidad }}</div>
-              <div>hora: {{ compra.hora }}</div>
-              <div class="text-xl text-black">Total: {{ compra.precio * compra.cantidad }}</div>
+              <div>Fecha: {{ compra.hora }}</div>
+              <div class="text-xl text-black">Total: ${{ compra.precio * compra.cantidad }}</div>
             </div>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default {
     ),
 
     getHoraActual(){
-      const hora = moment().format('MMMM Do YYYY, h:mm:ss a');
+      const hora = moment().subtract(10, 'days').calendar();
       return hora
     },
 

@@ -7,7 +7,7 @@
           <div class="p-2 text-white bg-[#2c3e50] rounded-xl font-bold border-2">Hace tu Pedido</div>
         </router-link>
       </div>
-      <img class="w-full h-22 md:h-80" src="https://dam.ngenespanol.com/wp-content/uploads/2019/04/hamburguesa-mundo.png" alt="banner">
+      <img class="w-full h-22 md:h-80" :src="image" alt="banner">
     </div>
     <h1 class="text-3xl mt-4 p-4 underline">{{ titulo }}</h1>
     <Productos :productos="producto"></Productos>
@@ -24,6 +24,7 @@
 import Productos from '@/components/Productos.vue'
 import servicios from '@/data/servicios'
 import { mapMutations } from 'vuex'
+// import { onMounted, ref } from 'vue-demi'
 
 export default {
   name: 'HomeView',
@@ -31,10 +32,19 @@ export default {
     return {
         view: 'Home',  
         titulo: 'Productos Favoritos',
-        producto: []
+        producto: [],
+        images: [
+          'https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/08/02120926/Gastronom%C3%ADa.jpg', 
+          'https://usil.edu.pe/sites/default/files/2022-02/180222-gestion-innovacion-gastronomia-puestos-trabajo.jpg',
+          'https://blog.profoto.com.mx/wp-content/uploads/2018/08/los-ingredientes-basicos-de-la-gastronomia-espanola-1440x810.jpg',
+          'https://s2.glbimg.com/AZwdz2ugZrz0EQcGyMT4Il21OfA=/0x0:1400x788/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/q/v/ONzRlBR5CA4B83b0dUpg/banner-destaque.jpg',
+          'https://dam.ngenespanol.com/wp-content/uploads/2019/04/hamburguesa-mundo.png'
+        ],
+        image: 'https://dam.ngenespanol.com/wp-content/uploads/2019/04/hamburguesa-mundo.png'
     }
   },
   async mounted(){
+    this.intevalImages()
     this.CambiarView('Home')
     let productos = await servicios.obtenerProductos()
     for(let producto of productos){
@@ -46,6 +56,20 @@ export default {
     ...mapMutations(
             ['CambiarView']
     ),
+
+    intevalImages() {
+      let count = this.images.length
+      let index = 0
+      setInterval(() => {
+        if(index === count){
+          index = 0
+          this.image = this.images[index]
+        }else{
+          this.image = this.images[index]
+          index += 1
+        }
+      }, 5000);
+    }
   }
-}
+  }
 </script>

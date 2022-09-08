@@ -20,7 +20,7 @@
                               <h2 class="w-full">Precio $ {{ producto.precio }}</h2>
                           </div>
                       </div>
-                      <img v-if="producto.favorito" src="https://cdn-icons-png.flaticon.com/512/3699/3699516.png" class="flex absolute -top-5 -right-5 w-1/5 lg:w-1/5">
+                      <img v-if="producto.favorito" src="https://cdn-icons-png.flaticon.com/512/3699/3699516.png" class="flex absolute -top-3 -right-3 w-1/5 lg:w-1/5">
                       <div class="flex flex-col mt-2">
                         <button v-if="producto.disponibilidad != 0" class="bg-lime-500 p-1 md:p-3 rounded-xl text-white mb-2 AddCarrito" @click="Agregar(producto)">{{ add }}</button>
                         <router-link :to="{name: 'detalle' , params: {id: producto.id} }">

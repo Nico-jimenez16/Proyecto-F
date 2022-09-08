@@ -4,7 +4,7 @@
             <form class="w-full md:w-3/4 lg:w-2/4 text-black p-4 mb-8 border-2 rounded-xl" action="">
                 <H1 class="text-2xl text-black mb-2">Formulario de Registro</H1>
                 <div class="flex flex-col mb-4">
-                    <input class="w-full border-2 rounded-full p-4" type="number" name="dni" id="dni" placeholder="Ingrese dni" @keyup="validarDni" v-model.number="formulario.dni.value">
+                    <input class="w-full border-2 rounded-full p-4" maxlength="8" type="number" name="dni" id="dni" placeholder="Ingrese dni" @keyup="validarDni" v-model.number="formulario.dni.value">
                     <div class="w-full bg-red-700" v-if="!formulario.dni.isValido">
                         <p class="w-full bg-red-500 text-white text-sm md:text-md font-bold">{{ formulario.dni.mje }}</p>
                     </div>
@@ -98,27 +98,39 @@ export default {
             }
         },
         validarDni(){
+            const User = this.usuarios.find((user) => user.dni == this.formulario.dni.value);
             const regular_dni = /^\d{8}(?:[-\s]\d{4})?$/;
             if(this.formulario.dni.value == ''){
                     this.formulario.dni.isValido = false
                     this.formulario.dni.mje = 'Value is required'
             }else{
-                if(regular_dni.test(this.formulario.dni.value) && this.formulario.dni.value >= 0){
-                    this.formulario.dni.isValido = true
-                    this.formulario.dni.mje = 'Valido'   
-                }else{
+                if(User){
                     this.formulario.dni.isValido = false
-                    this.formulario.dni.mje = 'invalid format'
+                    this.formulario.dni.mje = 'dni already exists'
+                }else{
+                    if(regular_dni.test(this.formulario.dni.value) && this.formulario.dni.value >= 0){
+                        this.formulario.dni.isValido = true
+                        this.formulario.dni.mje = 'Valido'
+                    }else{
+                        this.formulario.dni.isValido = false
+                        this.formulario.dni.mje = 'invalid format'
+                    }
                 }
             }
         },
         validarUsuario(){
+            const User = this.usuarios.find((user) => user.usuario == this.formulario.usuario.value);
             if(this.formulario.usuario.value == ''){
                 this.formulario.usuario.isValido = false
                 this.formulario.usuario.mje = 'Value is required'
             }else{
-                this.formulario.usuario.isValido = true
-                this.formulario.usuario.mje = 'Valido'
+                if(User){
+                    this.formulario.usuario.isValido = false
+                    this.formulario.usuario.mje = 'user already exists'
+                }else{
+                    this.formulario.usuario.isValido = true
+                    this.formulario.usuario.mje = 'valido'
+                }
             }
         },
         validarPassword(){
