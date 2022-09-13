@@ -2,7 +2,7 @@
     <div>
         <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
         <div class="block lg:flex">
-            <div class="w-1/2 flex flex-col justify-start lg:mt-4 items-center p-4">
+            <div class="w-full lg:w-1/2 flex flex-col justify-start lg:mt-4 items-center p-4">
                 <p class="w-full p-2 mb-2 text-left">Soy estudiante de Ingenieria en Sistemas de Informacion en la Universidad Tecnológica Nacional de Cordoba, Argentina.
                     Actualmente me encuentro cursando Tercer año de la carrera con materias relevantes aprobadas como: algoritmos y estructuras de datos, paradigma de programacion , programacion de aplicaciones visuales I y II , algebra , analisis matematico , analisis de sistema y cursando Diseño de sistemas.
                 </p>
@@ -18,7 +18,7 @@
                     <a target="_bank" class="font-bold" href="https://www.coderhouse.com/certificados/62c2dec6b5e2270024c1ca9a">Certificado VueJs</a>
                 </p>
             </div>
-            <div class="w-1/2 h-full flex justify-center p-4">
+            <div class="w-full lg:w-1/2 h-full flex justify-center p-4">
                 <a target="_bank" href="https://ibb.co/C90SxFc"><img src="https://i.ibb.co/B6sY8Rp/CV-jimenez-Nicolas.jpg" alt="CV-jimenez-Nicolas"></a>
             </div>
         </div>

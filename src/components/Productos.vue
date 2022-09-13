@@ -6,11 +6,14 @@
               <button class="w-full bg-cyan-700 p-4 rounded-xl text-white">Nuevo Producto</button>
             </router-link>
           </div>
-          <div class="w-full bg-state-300 p-2 mt-2">
+          <div class="w-full flex justify-center">
+            <h1 class="w-3/4 text-md md:text-3xl mt-4 p-4" v-if="productos.length == 0" >No se encontraron productos !</h1>
+          </div>
+          <div class="w-full bg-state-300 p-2">
               <div class="w-full flex flex-row flex-wrap justify-center">
-                  <div v-for="(producto, index) of productos" :key="index" class="relative shadow-2xl hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 p-4 m-4 w-1/3 md:w-2/5 lg:w-1/3 xl:w-1/4 bg-transparent text-black border-2 rounded-xl product">
-                      <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
-                        <div class="h-32 md:h-48 lg:h-56">
+                  <div v-for="(producto, index) of productos" :key="index" class="relative shadow-2xl hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 p-4 m-4 w-1/3 md:w-2/5 lg:w-1/5 bg-transparent text-black border-2 rounded-xl product">
+                    <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
+                        <div class="h-32 md:h-40 lg:h-40 m-auto w-fit">
                           <img :src="producto.url" class="w-full h-full rounded-xl m-auto" :alt="producto.descripcion">
                         </div>
                       </router-link>
@@ -51,7 +54,6 @@ export default {
   },
   setup(){
     const add = ref('Agregar a carrito')
-
     return { add }
   },
   computed: {
@@ -83,7 +85,6 @@ export default {
       this.agregarProductos(prod)
     }
   }
-  
 }
 </script>
 
@@ -92,10 +93,5 @@ export default {
 .product{
   min-width: 17.5rem;
 }
-
-/* .AddCarrito:active {
-  background: #2c3e50;
-  color: #fff;
-} */
 
 </style>
