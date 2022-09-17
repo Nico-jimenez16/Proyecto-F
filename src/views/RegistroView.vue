@@ -12,13 +12,13 @@ import { mapMutations } from 'vuex'
 
 export default {
     name: 'RegistroView',
+    components:{Registro},
     data() {
         return {
             view: 'Registro',
             usuarios: []
         }
     },
-    components:{Registro},
     async mounted(){
         this.usuarios = await servicios.obtenerUsuarios()
         this.CambiarView('Registro')

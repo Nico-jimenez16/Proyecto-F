@@ -11,6 +11,7 @@ export default {
                 // PRODUCTOS //
               //////////////////
 
+
     // Obtiene todos los productos a la API
 
     async obtenerProductos(){
@@ -18,7 +19,6 @@ export default {
             const response = await axios.get(Apiprod)
             const data = await response.data
             return data
-
         } catch (error) {
             console.error(error)
         }

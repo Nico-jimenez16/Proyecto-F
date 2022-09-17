@@ -13,14 +13,12 @@ import { mapMutations } from 'vuex'
 
 export default {
     name: 'LoginView',
+    components: { Login },
     data() {
         return {
             view: 'Login',
             usuarios: []
         }
-    },
-    components: {
-        Login
     },
     async mounted(){
         this.usuarios = await servicios.obtenerUsuarios()

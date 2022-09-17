@@ -11,8 +11,8 @@
       <div v-if="getCantidadProductos == 0" class="flex justify-center items-end h-full w-full mt-2">
         <h3 class="text-xl md:text-3xl"> No hay productos en el carrito !</h3>
       </div>
-      <div class="block md:flex text-black p-4 md:p-4">
-        <div class="w-full md:w-1/2 bg-state-300 movies mt-2">
+      <div name="carrito" class="block md:flex text-black p-4 md:p-4">
+        <div name="Productos" class="w-full md:w-1/2 bg-state-300 movies mt-2">
             <div class="flex w-full flex-col justify-center items-center md:p-2 lg:p-0">
               <h2 v-if="getCantidadProductos != 0" class="text-xl font-bold mb-4">Productos Seleccionados !</h2>
               <div v-for="(producto, index) of getProductos" :key="index" class="flex mb-2 relative shadow-lg w-full md:w-5/6 lg:w-3/4 xl:w-3/4 bg-transparent text-black font-bold border-2 rounded-xl p-4">
@@ -39,7 +39,7 @@
               </div>
             </div>
           </div>
-        <div class="w-full md:w-1/2 mt-4 md:mt-0">
+        <div name="Detalle de la compra" class="w-full md:w-1/2 mt-4 md:mt-0">
             <div v-if="getTotal != 0">
               <p class="text-xl font-bold">Orden de Compra</p>
               <p>Su pedido llegara a su casa en aproximadamente 15 minutos. Gracias por su compra.</p>
@@ -61,7 +61,7 @@
             </div>
         </div>
       </div>
-      <div class="hidden w-full block" v-show="getResultadoLogin">
+      <div name="Compras realizadas" class="hidden w-full block" v-show="getResultadoLogin">
         <h1 class="text-3xl mt-4 font-bold mb-4">Compras Realizadas !</h1>
         <button v-if="!historial" @click="historial = !historial" class="w-3/4 p-4 text-md md:text-xl bg-lime-600 rounded-xl mb-4 text-white">Click para ver Historial</button>
         <button v-else @click="historial = !historial" class="w-3/4 p-4 text-md md:text-xl bg-lime-600 rounded-xl mb-4 text-white">Click para Ocultar Historial</button>
