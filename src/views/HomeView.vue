@@ -1,5 +1,5 @@
 <template>
-  <div id="home" class="md:py-2 lg:py-0">
+  <div id="home">
     <div class="flex relative justify-center items-center w-full overflow-hidden h-52 md:h-96">
       <div class="flex flex-col absolute w-full justify-center items-center p-2 md:p-4 backdrop-opacity-10 backdrop-invert bg-black/40 text-white">
         <h2 class="text-md md:text-4xl font-bold p-4">TU PLATO FAVORITO AQUI !!</h2>
