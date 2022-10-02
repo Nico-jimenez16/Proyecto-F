@@ -15,12 +15,17 @@ export default new Vuex.Store({
       rol: ''
     },
     Navmobile: false,
-    view: ''
+    view: '',
+    loader: false
   },
   getters: {
 
     GetView(state){
       return state.view 
+    },
+
+    getLoader(state){
+      return state.loader
     },
 
     // Carrito
@@ -55,6 +60,10 @@ export default new Vuex.Store({
 
   },
   mutations: {
+
+    setLoader(state , bool){
+      state.loader = bool
+    },
 
     CambiarView(state , view){
       state.view = view

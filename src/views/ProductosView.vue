@@ -9,46 +9,44 @@
 </template>
 
 <script>
-import Productos from '@/components/Productos.vue'
-import servicios from '@/data/servicios'
-import { computed, onMounted, ref } from 'vue-demi'
-import { mapMutations } from 'vuex'
+import Productos from '@/components/Productos.vue';
+import servicios from '@/data/servicios';
+import { computed, ref } from 'vue-demi';
+import { mapMutations } from 'vuex';
 
 export default {
     name: 'ProductosView',
     components:{ Productos },
     setup(){
-        const view = ref('Productos')
-
-        // CARGAR LOS PRODUCTOS CUANDO SE MONTA LA VISTA
-        const productos = ref([])
-        onMounted(async() => {
-            productos.value = await servicios.obtenerProductos()
-        })
-        
+        const view = ref('Productos');
+        const products = ref(null);    
 
         // PRODUCTOS CON FILTRO APLICADO SEGUN EL SEARCH
         const search = ref('')
-        const filterProducts = ref([])
+        const filterProducts = ref(null)
         filterProducts.value = computed (() => {
-            return productos.value.filter((prod) => {
+            return products.value?.filter((prod) => {
                 return prod.descripcion.toLowerCase().includes(search.value.toLowerCase())
             });
-        })
+        });
+
 
         return {
             view,
-            productos,
+            products,
             search,
             filterProducts
         }
     },
-    mounted(){
+    async mounted(){
         this.CambiarView('Productos')
+        this.setLoader(true)
+        this.products = await servicios.obtenerProductos()
+        this.setLoader(false)
     },
     methods:{
         ...mapMutations(
-                ['CambiarView']
+                ['CambiarView' , 'setLoader']
         )
     }
 }

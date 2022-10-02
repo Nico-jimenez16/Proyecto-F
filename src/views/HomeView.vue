@@ -9,8 +9,8 @@
       </div>
       <img class="w-full h-auto" :src="image" alt="banner">
     </div>
-    <h1 class="text-3xl mt-2 p-2 underline">{{ titulo }}</h1>
-    <Productos :productos="productoFavoritos"></Productos>
+    <h1 class="text-3xl mt-2 p-2 underline">{{ favoriteProductsTitle }}</h1>
+    <Productos :productos="favoriteProducts"></Productos>
     <router-link :to="{ name: 'productos'}" >
       <div class="flex w-full justify-center"> 
         <button class="p-2 text-cyan-700 font-bold text-sm w-full md:text-xl md:w-1/2 mb-4">VER TODOS LOS PRODUCTOS<span class="font-bold text-cyan-700 ml-4"> >>> </span></button>
@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import Productos from '@/components/Productos.vue'
-import servicios from '@/data/servicios'
-import { mapMutations } from 'vuex'
+import Productos from '@/components/Productos.vue';
+import servicios from '@/data/servicios';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'HomeView',
@@ -30,8 +30,9 @@ export default {
   data(){
     return {
         view: 'Home',  
-        titulo: 'Productos Favoritos',
-        productoFavoritos: [],
+        favoriteProductsTitle: 'Productos Favoritos',
+        products: null,
+        favoriteProducts: null,
         images: [
           'https://img.freepik.com/foto-gratis/ingredientes-italianos-apetitosos-frescos-sabrosos-comida-viejo-fondo-madera-rustico-listo-cocinar-inicio-italiano-comida-saludable-concepto-cocina_1220-1740.jpg?w=2000',
           'https://elviajerofeliz.com/wp-content/uploads/2020/09/comida-tipica-de-venezuela.jpg',
@@ -43,12 +44,19 @@ export default {
   async mounted(){
     this.intevalImages()
     this.CambiarView('Home')
-    const productos = await servicios.obtenerProductos()
-    productos.filter((producto) => { if(producto.favorito) this.productoFavoritos.push(producto)})
+
+    // Cargando Datos 
+    this.setLoader(true)
+    this.products = await servicios.obtenerProductos()
+    
+    this.favoriteProducts = this.products.filter((producto) => { 
+      if(producto.favorito) {return producto }
+      this.setLoader(false)
+    })
   },
   methods:{
     ...mapMutations(
-            ['CambiarView']
+            ['CambiarView' , 'setLoader']
     ),
 
     intevalImages() {

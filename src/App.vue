@@ -1,14 +1,14 @@
 <template>
   <div id="app" class="lg:flex">
     <div class="sidebar bg-lime-300">
-      <Header></Header>
+      <Header/>
     </div>
     <div class="body">
       <div class="hidden lg:block">
-        <Navigation></Navigation>
+        <Navigation/>
       </div>
       <router-view/>
-      <Footer></Footer>
+      <Footer/>
     </div>
   </div>
 </template>

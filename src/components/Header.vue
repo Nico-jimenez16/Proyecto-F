@@ -4,7 +4,7 @@
       <h1 class="text-3xl font-bold">NJ</h1>
     </div>
     <div id="desk" class="hidden lg:block">
-      <div class="w-full flex h-14 justify-center items-center mb-4 p-2">
+      <div class="w-full flex h-14 justify-center items-center mb-4 p-2 border-[#2c3e50] border-b-2">
         <router-link class="flex w-full justify-center items-center" :to="{name: 'home'}">
             <div class="w-1/2 flex justify-center items-center hover:-translate-y-1 transition duration-300 ease-in-out">
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" focusable="false" class="chakra-icon css-1fmr1qf" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg">
@@ -16,7 +16,7 @@
             </div>
         </router-link>
       </div>
-      <div class="w-full flex h-14 justify-center items-center mb-4 p-2">
+      <div class="w-full flex h-14 justify-center items-center mb-4 p-2 border-[#2c3e50] border-b-2">
         <router-link class="flex w-full justify-center items-center" :to="{name:'productos'}">
             <div class="w-1/2 flex justify-center items-center hover:-translate-y-1 transition duration-300 ease-in-out">
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" focusable="false" class="chakra-icon css-1fmr1qf" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@
             </div>
         </router-link>
       </div>
-      <div class="w-full flex h-14 justify-center items-center mb-4 p-2">
+      <div class="w-full flex h-14 justify-center items-center mb-4 p-2 border-[#2c3e50] border-b-2">
         <router-link class="flex w-full justify-center items-center" :to="{name: 'carrito'}">
             <div class="w-1/2 flex justify-center items-center">
               <carrito></carrito>
@@ -53,26 +53,7 @@
       </div>
     </div>
     <div v-if="modalNav" id="modal" class="model-movile bg-lime-300">
-      <div class="w-full flex justify-center items-center">
-        <h1 class="text-3xl font-bold">NJ</h1>
-      </div>
-      <div class="mt-4">
-        <router-link :to="{name: 'home'}">
-          <div @click="ModalView" class="flex w-full justify-center items-center mb-4 p-4">
-            <h3 class="text-xl pl-2 underline">Home</h3>
-          </div>
-        </router-link>
-        <router-link :to="{name: 'productos'}" >
-          <div @click="ModalView" class="flex w-full justify-center items-center mb-4 p-4">
-            <h3 class="text-xl pl-2 underline">Producto</h3>
-          </div>
-        </router-link>
-        <router-link :to="{name: 'carrito'}">
-          <div @click="ModalView" class="flex w-full justify-center items-center mb-4 p-4">
-            <h3 class="text-xl pl-2 underline">Carrito</h3>
-          </div>
-        </router-link>
-      </div>
+      <ModalNavegacionmobile/>
     </div>
   </div>
 </template>
@@ -81,6 +62,7 @@
 <script>
 import carrito from './Carrito.vue'
 import Navigation from './Navigation.vue';
+import ModalNavegacionmobile from './ModalNavegacionMobile.vue'
 
 export default {
   name: 'HeaderComponent',
@@ -89,7 +71,7 @@ export default {
       modalNav: false
     }
   },
-  components:{carrito , Navigation},
+  components:{carrito , Navigation , ModalNavegacionmobile},
   methods:{
     ModalView(){
       this.modalNav = !this.modalNav
@@ -124,7 +106,6 @@ export default {
   #Header:hover .afectado {
     width: 16rem;
     display: flex;
-    justify-content: start;
     align-content: center;
   }
 

@@ -6,7 +6,13 @@
               <button class="w-full bg-cyan-700 p-4 rounded-xl text-white">Nuevo Producto</button>
             </router-link>
           </div>
-          <div class="w-full bg-state-300 p-2">
+          <div v-if="getLoader" id="loader">
+            <Loader/>
+          </div>
+          <div v-if="productos != null && productos.length === 0">
+            <h1 class="flex justify-center items-center text-3xl py-8"> no characters found ! </h1>
+          </div>
+          <div v-if="productos" class="w-full bg-state-300 p-2">
             <div class="w-full flex flex-row flex-wrap justify-center">
                   <div v-for="(producto, index) of productos" :key="index" class="relative shadow-2xl hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 p-4 m-4 w-1/3 md:w-2/5 lg:w-1/5 bg-transparent text-black border-2 rounded-xl product">
                     <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
@@ -30,18 +36,20 @@
                         <p v-if="producto.enCarrito != 0" class="bg-red-600 w-1/6 rounded-xl text-white">{{producto.enCarrito}}</p>
                       </div>
                   </div> 
-              </div>
+            </div>
           </div>
       </div>
   </div>
 </template>
 
 <script>
-import { mapGetters , mapMutations } from 'vuex'
+import { mapGetters , mapMutations } from 'vuex';
+import Loader from '../components/Loader.vue';
 
 
 export default {
   name: 'ProductComponent',
+  components: { Loader },
   props: {
     productos:{
       type: Array,
@@ -52,7 +60,7 @@ export default {
   computed: {
 
     ...mapGetters(
-      ['getUser' , 'getProductos']
+      ['getUser' , 'getLoader']
     )
 
   }, 
