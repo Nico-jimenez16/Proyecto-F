@@ -10,7 +10,7 @@
             <Loader/>
           </div>
           <div v-if="productos != null && productos.length === 0">
-            <h1 class="flex justify-center items-center text-3xl py-8"> no characters found ! </h1>
+            <h1 class="flex justify-center items-center text-3xl py-8"> Producto no encontrado ! </h1>
           </div>
           <div v-if="productos" class="w-full bg-state-300 p-2">
             <div class="w-full flex flex-row flex-wrap justify-center">

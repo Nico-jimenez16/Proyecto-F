@@ -12,7 +12,7 @@ export default {
               //////////////////
 
 
-    // Obtiene todos los productos a la API
+    // ! Obtiene todos los productos a la API
 
     async obtenerProductos(){
         try {
@@ -24,7 +24,7 @@ export default {
         }
     },
 
-    // Agrega una producto a la API
+    // ! Agrega una producto a la API
 
     async agregarProducto(obj , fav){
         const nuevoP = {
@@ -44,7 +44,7 @@ export default {
         }
     },
 
-    // Borra un producto del json 
+    // ! Borra un producto del json 
 
     async delleteProducto(id){
         try {
@@ -60,7 +60,7 @@ export default {
         } 
     },
 
-    // Actualiza los datos de un producto del json 
+    // ! Actualiza los datos de un producto del json 
 
     async updateProducto(obj , fav){
         const prod = {
@@ -78,7 +78,7 @@ export default {
         }
     },
 
-    // Actualiza la disponibilidad de un producto al realizarce una compra
+    // ! Actualiza la disponibilidad de un producto al realizarce una compra
 
     async updateDisponibilidad(obj){
         const prod = {
@@ -91,7 +91,7 @@ export default {
         }
     },
 
-    // Obtiene el ultimo id del array de objetos de productos
+    // ! Obtiene el ultimo id del array de objetos de productos
 
     async obtenerUltimoIdProductos(){
         let response = await axios.get(Apiprod)
@@ -105,7 +105,7 @@ export default {
                 // Usuarios //
               /////////////////
 
-    // Obtiene todos los usuarios de la API
+    // ! Obtiene todos los usuarios de la API
 
     async obtenerUsuarios(){
         try {
@@ -118,7 +118,7 @@ export default {
         }
     },
 
-    // Agrega un usuario en objetos a la API
+    // ! Agrega un usuario en objetos a la API
 
     async agregarUsuario(obj){
         try {
@@ -130,7 +130,7 @@ export default {
         }
     },
 
-    // Obtiene el ultimo id del array de objetos de Usuarios
+    // ! Obtiene el ultimo id del array de objetos de Usuarios
 
     async obtenerUltimoIdUsuarios(){
         let response = await axios.get(ApiUsu)
@@ -144,7 +144,7 @@ export default {
                 // Compras //
               ///////////////
 
-    // Agrega una compra del usuario en objetos al json
+    // ! Agrega una compra del usuario en objetos al json
 
     async registrarCompra(obj){
         try {
@@ -155,7 +155,7 @@ export default {
         }
     },
 
-    // Obtiene todos las compras del json
+    // ! Obtiene todos las compras del json
 
     async obtenerProductoXusuario(){
         try {
