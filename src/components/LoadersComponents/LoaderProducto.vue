@@ -10,6 +10,6 @@
 
 <script>
 export default {
-    name: 'LoaderComponent'
+    name: 'LoaderProductoComponent'
 }
 </script>

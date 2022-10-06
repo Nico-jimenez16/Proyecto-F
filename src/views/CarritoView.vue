@@ -26,14 +26,14 @@
                         <p class="w-full">$ {{ producto.precio }}</p>
                     </div>
                     <div class="mt-2">
-                        <button class="w-10 text-black md:bg-black md:text-white ml-4 p-2 carrito-button" @click="DeleteCarrito(producto.id)" >-</button>
-                        <button class="w-10 text-black md:bg-black md:text-white ml-4 p-2 carrito-button" @click="Agregar(producto)" >+</button>
+                        <button class="w-10 text-black md:bg-black md:text-white ml-4 p-2 carrito-button" @click="RestarCantProducto(producto.id)" >-</button>
+                        <button class="w-10 text-black md:bg-black md:text-white ml-4 p-2 carrito-button" @click="SumarCantProducto(producto)" >+</button>
                     </div>
                 </div>
                 <div class="absolute top-0 p-2 right-0 bg-[#dc2626] rounded-full text-white">
                     <h2 class="justify-end">{{ producto.enCarrito }}</h2>
                 </div>
-                <div @click="eliminarCarrito(producto.id)" class="w-1/4 md:w-1/5 lg:w-1/6 xl:w-1/6 flex justify-end absolute p-1 right-0 bottom-0  text-white rounded-md">
+                <div @click="eliminarProdCarrito(producto.id)" class="w-1/4 md:w-1/5 lg:w-1/6 xl:w-1/6 flex justify-end absolute p-1 right-0 bottom-0  text-white rounded-md">
                     <img class="w-1/3 cursor-pointer" src="https://cdn-icons-png.flaticon.com/512/1345/1345823.png" alt="tachito de basura">
                 </div>
               </div>
@@ -56,7 +56,7 @@
                 <input class="w-full border-2 rounded-full p-4 mt-2" type="text" name="observaciones" id="observaciones" placeholder="Ingrese las indicaciones" v-model="observaciones">
               </div>
               <div v-if="getCantidadProductos != 0" class="flex justify-center items-start w-full mt-2">
-                <button class="w-full md:w-2/3 bg-cyan-700 p-2 mt-8 text-white mb-2" @click="Comprar(getProductos)">Comprar</button>
+                <button class="w-full md:w-2/3 bg-cyan-700 p-2 mt-8 text-white mb-2" @click="RegistrarComprar(getProductos)">Comprar</button>
               </div>
             </div>
         </div>
@@ -88,20 +88,22 @@ export default {
       this.CambiarView('Carrito')
 
   },
-  methods:{
+  methods: {
 
     ...mapMutations(
       ['agregarProductos', 'eliminarProducto', 'vaciarProductos' , 'sacarDelCarrito' , 'CambiarView']
     ),
 
+    // Obtiene la fecha y hora actual 
+
     getHoraActual(){
-      const hora = moment().subtract(10, 'days').calendar();
+      const hora = moment().format('LLL');
       return hora
     },
 
-    // Suma 1 producto al carrito
+    // Suma 1 producto existente al carrito
 
-    Agregar(producto){
+    SumarCantProducto(producto){
       const prod = {
 
             "id": producto.id,
@@ -115,37 +117,41 @@ export default {
       this.agregarProductos(prod)
     },
 
-      // Resta 1 producto del carrito y si es 1 lo elimina
+    // Resta 1 producto existente del carrito y si es 1 lo elimina
 
-    DeleteCarrito(id){
+      RestarCantProducto(id){
       this.eliminarProducto(id)
-    },
-
-    async Comprar(productos){
-      if(this.getResultadoLogin){
-        for(let prod of productos){
-          const compra = {
-              "descripcion": prod.descripcion,
-              "precio": prod.precio,
-              "cantidad" : prod.enCarrito,
-              "user": this.getUser.dni,
-              "hora": this.getHoraActual(),
-              "observaciones" : this.observaciones
-          }
-          await servicios.registrarCompra(compra)
-          await servicios.updateDisponibilidad(prod)
-          this.vaciarProductos()
-        }
-      }
-      else{
-        alert('Inicie Sesion')
-      }
     },
 
     // Elimina el producto del carrito sin importar la cantidad que tenga en carrito
 
-    eliminarCarrito(id){
+    eliminarProdCarrito(id){
       this.sacarDelCarrito(id)
+    },
+
+    // Registra la compra de los productos en carrito 
+
+    async RegistrarComprar(productos){
+      const compra = []
+      const datosCompra = {
+        "user": this.getUser.dni,
+        "hora": this.getHoraActual(),
+        "observaciones" : this.observaciones
+      }
+      productos.map((prod) => {
+        compra.push({ ...prod , ...datosCompra})
+      });
+      
+      // Registro en DB de la compra 
+      if(this.getResultadoLogin){
+          await servicios.registrarCompra(compra)
+          await servicios.updateDisponibilidad(compra)
+          this.vaciarProductos()
+      }
+      else {
+        alert('Inicie Sesion')
+        this.$router.replace( {name:'login'} )
+      }
     }
   }
 }

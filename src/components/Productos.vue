@@ -44,7 +44,7 @@
 
 <script>
 import { mapGetters , mapMutations } from 'vuex';
-import Loader from '../components/Loader.vue';
+import Loader from './LoadersComponents/LoaderProducto.vue';
 
 
 export default {

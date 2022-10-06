@@ -44,7 +44,7 @@ export default {
         }
     },
 
-    // ! Borra un producto del json 
+    // ! Borra un producto del json
 
     async delleteProducto(id){
         try {
@@ -60,7 +60,7 @@ export default {
         } 
     },
 
-    // ! Actualiza los datos de un producto del json 
+    // ! Actualiza los datos de un producto del json
 
     async updateProducto(obj , fav){
         const prod = {
@@ -80,12 +80,13 @@ export default {
 
     // ! Actualiza la disponibilidad de un producto al realizarce una compra
 
-    async updateDisponibilidad(obj){
-        const prod = {
-            "disponibilidad": obj.disponibilidad - obj.enCarrito,
-        }
+    async updateDisponibilidad(compra){
         try {
-            await axios.put(Apiprod + `/${ obj.id }`, prod)
+            compra.map(async(prod) => {
+                await axios.put(Apiprod + `/${ prod.id }`, {
+                    "disponibilidad": prod.disponibilidad - prod.enCarrito,
+                })
+            })
         } catch (error) {
             console.error(error)
         }
@@ -146,9 +147,12 @@ export default {
 
     // ! Agrega una compra del usuario en objetos al json
 
-    async registrarCompra(obj){
+    async registrarCompra(compra){
+        // agregar model de registrando compra
         try {
-            await axios.post(ApiCompras, obj );
+            compra.map(async (prod) => {
+                await axios.post(ApiCompras, prod );
+            })
             alert('Compra Registrada')
         } catch (error) {
             console.error(error)
