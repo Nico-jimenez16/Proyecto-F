@@ -4,19 +4,21 @@
         <div class="w-full h-5/6 flex justify-center items-end my-4">
           <input class="w-3/4 border-2 border-lime-600 rounded-xl p-4" placeholder="Buscar productos" type="text" v-model="search">
         </div>
-        <Productos :productos="filterProducts.value"></Productos>
+        <Productos :productos="filterProducts.value"/>
+        <BottomCarritoMobile/>
     </div>
 </template>
 
 <script>
 import Productos from '@/components/Productos.vue';
+import  BottomCarritoMobile from '../components/Bottom_CarritoMobile.vue';
 import servicios from '@/data/servicios';
 import { computed, ref } from 'vue-demi';
 import { mapMutations } from 'vuex';
 
 export default {
     name: 'ProductosView',
-    components:{ Productos },
+    components:{ Productos , BottomCarritoMobile },
     setup(){
         const view = ref('Productos');
         const products = ref(null);    

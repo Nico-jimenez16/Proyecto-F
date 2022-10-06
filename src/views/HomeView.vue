@@ -16,17 +16,19 @@
         <button class="p-2 text-cyan-700 font-bold text-sm w-full md:text-xl md:w-1/2 mb-4">VER TODOS LOS PRODUCTOS<span class="font-bold text-cyan-700 ml-4"> >>> </span></button>
       </div>
     </router-link>
+    <BottomCarritoMobile/>
   </div>
 </template>
 
 <script>
 import Productos from '@/components/Productos.vue';
 import servicios from '@/data/servicios';
+import  BottomCarritoMobile from '../components/Bottom_CarritoMobile.vue';
 import { mapMutations } from 'vuex';
 
 export default {
   name: 'HomeView',
-  components: { Productos },
+  components: { Productos , BottomCarritoMobile },
   data(){
     return {
         view: 'Home',  

@@ -20,14 +20,6 @@
                 </div>
             </form>
         </div>
-        <!-- <div class="w-2/5 border-4 bg-lime-200 absolute top-0 right-0 left-0 m-auto h-22 p-2 text-black">
-            <div class="h-12 flex px-2">
-                <h1 class="text-xl">Bienvenido: <span class="font-bold text-[#2c3e50]">{{ getUser.usuario }}</span></h1>
-            </div>
-            <div class="w-5/6 flex justify-end items-center text-white">
-                <button @click="modal" class="py-2 px-4 border-2 rounded-md bg-[#2c3e50]">Aceptar</button>
-            </div>
-        </div> -->
     </div>
 </template>
 

@@ -61,24 +61,6 @@
             </div>
         </div>
       </div>
-      <!-- <div name="Compras realizadas" class="w-full block" v-show="getResultadoLogin">
-        <h1 class="text-3xl mt-4 font-bold mb-4">Compras Realizadas !</h1>
-        <button v-if="!historial" @click="historial = !historial" class="w-3/4 p-4 text-md md:text-xl bg-lime-600 rounded-xl mb-4 text-white">Click para ver Historial</button>
-        <button v-else @click="historial = !historial" class="w-3/4 p-4 text-md md:text-xl bg-lime-600 rounded-xl mb-4 text-white">Click para Ocultar Historial</button>
-        <div v-if="historial && compras != 0" class="flex flex-wrap justify-center w-full mb-4">
-          <div class="flex bg-lime-100 border-2 rounded-xl p-4 m-4" v-for="(compra ,i) of compras" :key="i">
-            <h3 class="text-xl font-bold">Compra: </h3>
-            <div class="ml-2">
-              <div class="text-xl text-black">{{ compra.descripcion }}</div>
-              <div>Precio: ${{ compra.precio }}</div>
-              <div>Cantidad: {{ compra.cantidad }}</div>
-              <div>Fecha: {{ compra.hora }}</div>
-              <div class="text-xl text-black">Total: ${{ compra.precio * compra.cantidad }}</div>
-            </div>
-          </div>
-        </div>
-        <h2 class="text-md md:text-3xl font-bold mt-4 mb-4 p-12" v-if="historial && compras == 0">Aun no tiene compras, Realiza tu primera compra!</h2>
-      </div> -->
   </div>
 </template>
 
@@ -93,8 +75,6 @@ export default {
     return {
       view: 'Carrito',
       observaciones: '',
-      // historial: false,
-      // purchases: [],
       moment: moment
     }
   },
@@ -105,7 +85,6 @@ export default {
     ),
   },
   async mounted(){
-      await this.cargarCompras()
       this.CambiarView('Carrito')
 
   },
@@ -155,7 +134,6 @@ export default {
           }
           await servicios.registrarCompra(compra)
           await servicios.updateDisponibilidad(prod)
-          await this.cargarCompras()
           this.vaciarProductos()
         }
       }
@@ -163,16 +141,6 @@ export default {
         alert('Inicie Sesion')
       }
     },
-
-    // async cargarCompras(){
-    //   this.purchases = []
-    //   const productos = await servicios.obtenerProductoXusuario()
-    //   for(let prod of productos){
-    //     if(this.getUser.dni == prod.user){
-    //       this.purchases.push(prod)
-    //     }
-    //   }
-    // },
 
     // Elimina el producto del carrito sin importar la cantidad que tenga en carrito
 
