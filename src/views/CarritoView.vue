@@ -1,15 +1,13 @@
 <template>
   <div class="carrito">
       <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
-      <div class="flex w-full">
-        <router-link class="w-full" :to="{name: 'productos'}" >
-          <div class="flex justify-center items-center w-full mt-2">
+      <div class="flex flex-col w-full">
+        <router-link class="flex justify-center items-center w-full mt-2" :to="{name: 'productos'}" >
               <button class="w-full w-3/4 md:w-2/4 p-4 border-2 hover:bg-lime-300 rounded-xl text-black mb-2"> -- Seguir Comprando -- </button>
-          </div>
         </router-link>
-      </div>
-      <div v-if="getCantidadProductos == 0" class="flex justify-center items-end h-full w-full mt-2">
-        <h3 class="text-xl md:text-3xl"> No hay productos en el carrito !</h3>
+        <div v-if="getCantidadProductos == 0" class="flex justify-center items-end h-full w-full mt-2">
+          <h3 class="text-xl md:text-3xl"> No hay productos en el carrito !</h3>
+        </div>
       </div>
       <div name="carrito" class="block md:flex text-black p-4 md:p-4">
         <div name="Productos" class="w-full md:w-1/2 bg-state-300 movies mt-2">
@@ -139,7 +137,14 @@ export default {
         "observaciones" : this.observaciones
       }
       productos.map((prod) => {
-        compra.push({ ...prod , ...datosCompra})
+        const producto = {
+            "id": prod.id,
+            "favorito": prod.favorito,
+            "descripcion": prod.descripcion,
+            "cantidad": prod.enCarrito,
+            "precio": prod.precio,
+          }
+          compra.push({ ...producto , ...datosCompra})
       });
       
       // Registro en DB de la compra 
@@ -150,7 +155,6 @@ export default {
       }
       else {
         alert('Inicie Sesion')
-        this.$router.replace( {name:'login'} )
       }
     }
   }

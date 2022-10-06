@@ -22,7 +22,7 @@
                         </div>
                         <span class="text-[#dc2626]" v-if="mje != ''">{{ mje }}</span>
                         <router-link :to="{name: 'productos'}">
-                            <button class="w-full lg:w-2/3 bg-lime-500 p-4 rounded-xl text-white mt-4" @click="agregarCarrito(prod)">Agregar a Carrito</button>
+                            <button class="w-full lg:w-2/3 bg-lime-500 p-4 rounded-xl text-white mt-4" @click="agregarProductoACarrito(prod)">Agregar a Carrito</button>
                         </router-link>
                     </div>
                     <div v-else class="flex flex-col" >
@@ -147,7 +147,7 @@ export default {
         ...mapMutations(
             ['agregarProductos' , 'CambiarView']
         ),
-        agregarCarrito(producto){
+        agregarProductoACarrito(producto){
             const prod = {
 
                     "id": producto.id,

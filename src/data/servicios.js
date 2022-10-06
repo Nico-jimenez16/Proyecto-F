@@ -12,7 +12,7 @@ export default {
               //////////////////
 
 
-    // ! Obtiene todos los productos a la API
+    // ! Obtiener productos de la API
 
     async obtenerProductos(){
         try {
@@ -44,7 +44,7 @@ export default {
         }
     },
 
-    // ! Borra un producto del json
+    // ! Borra un producto de la API
 
     async delleteProducto(id){
         try {
@@ -60,7 +60,7 @@ export default {
         } 
     },
 
-    // ! Actualiza los datos de un producto del json
+    // ! Actualizar un producto de la API
 
     async updateProducto(obj , fav){
         const prod = {
@@ -92,21 +92,11 @@ export default {
         }
     },
 
-    // ! Obtiene el ultimo id del array de objetos de productos
-
-    async obtenerUltimoIdProductos(){
-        let response = await axios.get(Apiprod)
-        let ultimo = await response.data.pop()
-        if(ultimo) 
-            return ultimo.id
-        return 0
-    },
-
                 ////////////////
                 // Usuarios //
               /////////////////
 
-    // ! Obtiene todos los usuarios de la API
+    // ! Obtiener los usuarios de la API
 
     async obtenerUsuarios(){
         try {
@@ -119,7 +109,7 @@ export default {
         }
     },
 
-    // ! Agrega un usuario en objetos a la API
+    // ! Agrega un usuario a la API
 
     async agregarUsuario(obj){
         try {
@@ -129,16 +119,6 @@ export default {
         } catch (error) {
             console.error(error)
         }
-    },
-
-    // ! Obtiene el ultimo id del array de objetos de Usuarios
-
-    async obtenerUltimoIdUsuarios(){
-        let response = await axios.get(ApiUsu)
-        let ultimo = await response.data.pop()
-        if(ultimo)
-            return ultimo.id
-        return 0
     },
 
                 ///////////////
@@ -161,7 +141,7 @@ export default {
 
     // ! Obtiene todos las compras del json
 
-    async obtenerProductoXusuario(){
+    async obtenerCompras(){
         try {
             let response = await axios.get(ApiCompras)
             let data = await response.data
