@@ -14,7 +14,7 @@
           </div>
           <div v-if="productos" class="w-full bg-state-300 p-2">
             <div class="w-full flex flex-row flex-wrap justify-center">
-                  <div v-for="(producto, index) of productos" :key="index" class="relative shadow-2xl hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 p-4 m-4 w-1/3 md:w-2/5 lg:w-1/5 bg-transparent text-black border-2 rounded-xl product">
+                  <div v-for="(producto, index) of productos" :key="index" class="relative shadow-2xl hover:-translate-y-1 hover:scale-110 hover:bg-transparent duration-300 p-4 m-4 w-1/3 md:w-2/5 lg:w-1/6 xl:w-1/6 bg-transparent text-black border-2 rounded-xl product">
                     <router-link :to="{name: 'detalle' , params: {id: producto.id} }">
                         <div class="h-32 md:h-40 lg:h-40 m-auto w-fit">
                           <img :src="producto.url" class="w-full h-full rounded-xl m-auto imgProduct" :alt="producto.descripcion">
@@ -95,7 +95,7 @@ export default {
     min-width: 227px !important;
   }
   .product{
-    min-width: 17.5rem;
+    min-width: 17rem;
   }
 
 </style>
