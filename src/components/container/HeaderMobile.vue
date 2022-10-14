@@ -3,17 +3,19 @@
         <div id="HeaderMobile" class="w-full flex flex-row lg:hidden justify-center items-center h-full">
             <div v-if="!modalNav" @click="ModalView" class="w-1/6 h-auto ml-4">
                 <svg data-v-56587bc9="" width="50" height="30" xmlns="http://www.w3.org/2000/svg">
-                <path data-v-56587bc9="" d="M0 0h47.727v2.727H0zM0 13.636h47.727v2.727H0zM0   27.273h47.727V30H0z"></path>
+                    <path data-v-56587bc9="" d="M0 0h47.727v2.727H0zM0 13.636h47.727v2.727H0zM0   27.273h47.727V30H0z">
+                    </path>
                 </svg>
             </div>
             <div v-else @click="ModalView" class="w-1/6 h-auto ml-4">
                 <img class="w-8" src="https://cdn-icons-png.flaticon.com/512/1828/1828774.png">
             </div>
+            <!-- ? llama al componente autenticacion para login y registro  -->
             <div class="w-5/6 flex justify-end items-center h-full">
-                <Navigation></Navigation>
+                <AutenticacionComponent/>
             </div>
         </div>
-        <div id="modalNavegacion" v-if="modalNav" class="model-movile bg-lime-300">
+        <div id="modalNavegacion" v-if="modalNav" class="bg-lime-300 model-movile">
             <div class="w-full flex justify-center items-center">
                 <h1 class="text-3xl font-bold">NJ</h1>
             </div>
@@ -39,7 +41,7 @@
 </template>
 
 <script>
-import Navigation from './Navigation.vue';
+import AutenticacionComponent from './Autenticacion.vue';
 
 export default {
     name: 'ModalNavegacionMobileComponents',
@@ -48,7 +50,7 @@ export default {
             modalNav: false
         }
     },
-    components: { Navigation },
+    components: { AutenticacionComponent },
     methods:{
         ModalView(){
         this.modalNav = !this.modalNav
@@ -59,11 +61,10 @@ export default {
 
 <style scoped>
     .model-movile{
-        width: 55%;
+        width: 70%;
         display: flex;
         flex-direction: column;
-        position: absolute;
-        left: 0;
+        position: fixed;
         height: 88vh;
         z-index: 53;
 

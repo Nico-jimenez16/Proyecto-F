@@ -1,12 +1,12 @@
 <template>
-  <div class="registro">
+  <div id="registroView">
     <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
     <Registro :usuarios="usuarios"></Registro>
   </div>
 </template>
 
 <script>
-import Registro from '@/components/Registro.vue'
+import Registro from '@/components/forms/Registro.vue'
 import servicios from '@/data/servicios'
 import { mapMutations } from 'vuex'
 

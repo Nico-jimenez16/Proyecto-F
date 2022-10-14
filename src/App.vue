@@ -5,7 +5,7 @@
     </div>
     <div class="body">
       <div class="hidden lg:block">
-        <Navigation/>
+        <AutenticacionComponent/>
       </div>
       <router-view/>
       <Footer/>
@@ -15,15 +15,15 @@
 
 
 <script>
-import Footer from './components/Footer.vue'
-import Navigation from './components/Navigation.vue'
-import Header from './components/Header.vue'
+import Footer from './components/pure/Footer.vue'
+import AutenticacionComponent from './components/container/Autenticacion.vue'
+import Header from './components/container/Header.vue'
 
 export default {
   name: 'App',
   components: {
     Footer,
-    Navigation,
+    AutenticacionComponent,
     Header
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="carrito">
+  <div id="carritoView">
       <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
       <div class="flex flex-col w-full">
         <router-link class="flex justify-center items-center w-full mt-2" :to="{name: 'productos'}" >

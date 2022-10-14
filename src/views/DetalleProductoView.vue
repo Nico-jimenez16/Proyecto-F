@@ -1,5 +1,5 @@
 <template>
-    <div class="DetalleProducto">
+    <div id="detalleProductoView">
         <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
         <div class="flex flex-col p-8" v-for="(prod,i) of producto" :key="i">
             <div class="block lg:flex">

@@ -1,5 +1,5 @@
 <template>
-    <div class="NuevoProducto">
+    <div id="nuevoProductoView">
         <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
         <div class="flex flex-col justify-center items-center m-8">
             <form class="w-full md:w-3/4 lg:w-2/4 flex flex-col justify-center text-black p-4 border-2 rounded-xl">

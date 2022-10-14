@@ -16,12 +16,16 @@ export default new Vuex.Store({
     },
     Navmobile: false,
     view: '',
-    loader: false
+    loader: false,
+    perfil: false
   },
   getters: {
 
     GetView(state){
       return state.view 
+    },
+    getPerfil(state){
+      return state.perfil 
     },
 
     getLoader(state){
@@ -63,6 +67,9 @@ export default new Vuex.Store({
 
     setLoader(state , bool){
       state.loader = bool
+    },
+    setPerfil(state , bool){
+      state.perfil = bool
     },
 
     CambiarView(state , view){

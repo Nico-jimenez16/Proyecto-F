@@ -1,17 +1,22 @@
 <template>
-    <div class="Producto mt-2">
+    <div id="productoView">
         <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
+        <!-- ? Search  -->
         <div class="w-full h-5/6 flex justify-center items-end my-4">
           <input class="w-3/4 border-2 border-lime-600 rounded-xl p-4" placeholder="Buscar productos" type="text" v-model="search">
         </div>
-        <Productos :productos="filterProducts.value"/>
+        <!-- ? component Producto -->
+        <Productos 
+            :productos="filterProducts.value"
+        />
+        <!-- ? component bottom carrito  -->
         <BottomCarritoMobile/>
     </div>
 </template>
 
 <script>
-import Productos from '@/components/Productos.vue';
-import  BottomCarritoMobile from '../components/Bottom_CarritoMobile.vue';
+import Productos from '@/components/container/Productos.vue';
+import  BottomCarritoMobile from '../components/pure/BottomCarritoMobile.vue';
 import servicios from '@/data/servicios';
 import { computed, ref } from 'vue-demi';
 import { mapMutations } from 'vuex';

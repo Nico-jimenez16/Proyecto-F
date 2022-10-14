@@ -26,7 +26,6 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 
-
 export default {
     name: 'LoginComponent',
     data() {
@@ -70,7 +69,6 @@ export default {
             }
             else{
                 alert('Login Fallido !! Usuario o Contraseña Invalido')
-                this.$router.replace( {name:'login'} )
                 this.usuario.password = ''
             }
         }

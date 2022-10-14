@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="homeView">
     <div class="flex relative justify-center items-center w-full overflow-hidden h-52 md:h-96">
       <div class="flex flex-col absolute w-full justify-center items-center p-2 md:p-4 backdrop-opacity-10 backdrop-invert bg-black/40 text-white">
         <h2 class="text-md md:text-4xl font-bold p-4">TU PLATO FAVORITO AQUI !!</h2>
@@ -10,20 +10,24 @@
       <img class="w-full h-auto" :src="image" alt="banner">
     </div>
     <h1 class="text-3xl mt-2 p-2 underline">{{ favoriteProductsTitle }}</h1>
-    <Productos :productos="favoriteProducts"></Productos>
+    <!-- ? component producto  -->
+      <Productos 
+        :productos="favoriteProducts"
+      />
     <router-link :to="{ name: 'productos'}" >
       <div class="flex w-full justify-center"> 
         <button class="p-2 text-cyan-700 font-bold text-sm w-full md:text-xl md:w-1/2 mb-4">VER TODOS LOS PRODUCTOS<span class="font-bold text-cyan-700 ml-4"> >>> </span></button>
       </div>
     </router-link>
+    <!-- ? component bottom carrito  -->
     <BottomCarritoMobile/>
   </div>
 </template>
 
 <script>
-import Productos from '@/components/Productos.vue';
+import Productos from '@/components/container/Productos.vue';
 import servicios from '@/data/servicios';
-import  BottomCarritoMobile from '../components/Bottom_CarritoMobile.vue';
+import  BottomCarritoMobile from '../components/pure/BottomCarritoMobile.vue';
 import { mapMutations } from 'vuex';
 
 export default {

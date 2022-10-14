@@ -40,19 +40,19 @@
       </div>
     </div>
     <div id="mobile" class="h-full">
-      <ModalNavegacionMobile/>
+      <HeaderMobile/>
     </div>
   </div>
 </template>
 
 
 <script>
-import carrito from './Carrito.vue';
-import ModalNavegacionMobile from './Modal_NavegacionMobile.vue';
+import carrito from '../pure/Carrito.vue';
+import HeaderMobile from './HeaderMobile.vue';
 
 export default {
   name: 'HeaderComponent',
-  components:{carrito , ModalNavegacionMobile},
+  components:{carrito , HeaderMobile},
 }
 </script>
 

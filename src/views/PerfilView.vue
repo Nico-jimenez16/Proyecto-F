@@ -1,5 +1,5 @@
 <template>
-    <div id="perfil">
+    <div id="perfilView">
         <h1 class="lg:hidden w-full text-3xl mt-4 font-bold">{{ view }}</h1>
         <div class="block lg:flex">
             <div class="w-full lg:w-1/2 flex flex-col justify-start lg:mt-4 items-center p-4">
