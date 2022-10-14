@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Login from '@/components/forms/Login.vue'
+import Login from '@/components/pure/forms/Login.vue'
 import servicios from '@/data/servicios'
 import { mapMutations } from 'vuex'
 

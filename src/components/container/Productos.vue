@@ -30,7 +30,7 @@
 
 <script>
 import { mapGetters , mapMutations } from 'vuex';
-import LoaderProducto from '../loader/LoaderProducto.vue';
+import LoaderProducto from '../pure/loader/LoaderProducto.vue';
 import Producto from '../pure/Producto.vue'
 
 

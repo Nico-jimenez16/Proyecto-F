@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Registro from '@/components/forms/Registro.vue'
+import Registro from '@/components/pure/forms/Registro.vue'
 import servicios from '@/data/servicios'
 import { mapMutations } from 'vuex'
 
