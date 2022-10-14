@@ -16,7 +16,7 @@
 
 <script>
 import Footer from './components/pure/Footer.vue'
-import AutenticacionComponent from './components/container/Autenticacion.vue'
+import AutenticacionComponent from './components/pure/Autenticacion.vue'
 import Header from './components/container/Header.vue'
 
 export default {

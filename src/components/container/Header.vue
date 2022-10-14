@@ -39,7 +39,7 @@
         </router-link>
       </div>
     </div>
-    <div id="mobile" class="h-full">
+    <div id="mobile" class="h-full lg:hidden">
       <HeaderMobile/>
     </div>
   </div>
@@ -51,7 +51,7 @@ import carrito from '../pure/Carrito.vue';
 import HeaderMobile from './HeaderMobile.vue';
 
 export default {
-  name: 'HeaderComponent',
+  name: 'IndexHeaderComponent',
   components:{carrito , HeaderMobile},
 }
 </script>

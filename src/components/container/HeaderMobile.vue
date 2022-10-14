@@ -41,10 +41,10 @@
 </template>
 
 <script>
-import AutenticacionComponent from './Autenticacion.vue';
+import AutenticacionComponent from '../pure/Autenticacion.vue';
 
 export default {
-    name: 'ModalNavegacionMobileComponents',
+    name: 'HeaderMobileComponents',
     data() {
         return {
             modalNav: false

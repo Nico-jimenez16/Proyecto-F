@@ -35,7 +35,7 @@ import Producto from '../pure/Producto.vue'
 
 
 export default {
-  name: 'ProductComponent',
+  name: 'IndexProductosComponent',
   components: { Producto , LoaderProducto },
   props: {
     productos:{

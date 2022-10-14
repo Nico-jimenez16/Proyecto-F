@@ -41,7 +41,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import PerfilComponent from '../pure/Perfil.vue';
+import PerfilComponent from './Perfil.vue';
 
 export default {
   name: 'AutenticacionComponent',
